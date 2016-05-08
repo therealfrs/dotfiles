@@ -1,3 +1,7 @@
+" Author: Feras Aldahlawi
+" Date: Sun May  8 14:27:40 EDT 2016
+
+
 " Set the encoding to UTF-8. Why would you ever use something else!
 set encoding=utf-8
 
