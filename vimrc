@@ -25,7 +25,22 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'junegunn/vim-easy-align'
 
 " Fugitive to keep track of code addition/deletion with Git
-Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+
+" vim-git for coloring
+Plugin 'tpope/vim-git'
+
+" vim-ruby
+Bundle 'vim-ruby/vim-ruby'
+
+" Smart comments
+Plugin 'tomtom/tcomment_vim'
+
+" Vim Surround
+Plugin 'tpope/vim-surround'
+
+" Fuzzy file name searching
+Plugin 'ctrlpvim/ctrlp.vim'
 
 call vundle#end()
 
