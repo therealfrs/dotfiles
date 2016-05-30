@@ -42,6 +42,9 @@ Plugin 'tpope/vim-surround'
 " Fuzzy file name searching
 Plugin 'ctrlpvim/ctrlp.vim'
 
+" Syntastic
+Plugin 'scrooloose/syntastic'
+
 call vundle#end()
 
 " Attempt to determine the type of a file based on its name and possibly its
@@ -55,7 +58,8 @@ filetype plugin indent on
 
 
 " Enable syntax highlighting
-syntax enable
+execute pathogen#infect()
+syntax on
 colorscheme zenburn
 
 " change cursor apperance in inster mode
