@@ -51,7 +51,7 @@ call vundle#end()
 filetype plugin indent on
 
 " give us EOL
-set list
+" set list
 
 
 " Enable syntax highlighting
@@ -235,6 +235,9 @@ if exists('+colorcolumn')
 else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
+
+" Set leader as spacebar
+:let mapleader = "\<Space>"
 
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
