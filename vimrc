@@ -1,5 +1,5 @@
 " Author: Feras Aldahlawi
-" Date: Sun May  8 14:27:40 EDT 2016
+" Date: Tue May 31 12:28:04 EDT 2016
 
 
 " Set the encoding to UTF-8. Why would you ever use something else!
@@ -53,6 +53,27 @@ filetype plugin indent on
 " give us EOL
 " set list
 
+" Syntastic settings
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" Mark syntax errors with :signs
+let g:syntastic_enable_signs=1
+
+" Do not automatically jump to the error when saving the file
+" Jump feature is annoying to me as it automatically moves the cursor
+let g:syntastic_auto_jump=0
+
+" Show the error list automatically
+" Allows you to easily navigate the quick fix list
+" let g:syntastic_auto_loc_list=1
+
+" This is where the magic happens. Chain together different style checkers
+" in order to check for both style flaws and syntax errors.
+" Syntax checkers: https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers
+let g:syntastic_ruby_checkers=['rubocop', 'mri']
 
 " Enable syntax highlighting
 execute pathogen#infect()
@@ -63,17 +84,6 @@ colorscheme zenburn
 " (Stolen from the awesome Derek Wyatt)
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
-" Syntastic settings
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_ruby_mri_exec = "~/.rbenv/shims/ruby"
 
 " tab completion for help
 set wildmenu
@@ -287,7 +297,6 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
-
 let g:syntastic_go_checkers = ['golint']
 
 " Open go doc in vertical window, horizontal, or tab
