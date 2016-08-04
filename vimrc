@@ -42,7 +42,17 @@ Plugin 'tpope/vim-surround'
 " Fuzzy file name searching
 Plugin 'ctrlpvim/ctrlp.vim'
 
+" Vim HardTime
+Bundle 'takac/vim-hardtime'
+
 call vundle#end()
+
+" HardTime configurations
+let g:hardtime_default_on = 1
+let g:hardtime_ignore_quickfix = 1
+let g:hardtime_allow_different_key = 2
+let g:hardtime_maxcount = 2
+
 
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
@@ -52,6 +62,17 @@ filetype plugin indent on
 
 " give us EOL
 " set list
+
+" statusline configurations
+set statusline=
+set statusline+=%h "help file flag
+set statusline+=%m "modified flag
+set statusline+=%f "read only flag
+set statusline+=%= "left/right separator
+set statusline+=%c, "cursor column
+set statusline+=\ %P "percent through file
+set statusline+=%#todo# "switch to todo highlight
+set statusline+=%* "switch back to normal statusline hightlight
 
 " Syntastic settings
 
@@ -75,6 +96,7 @@ let g:syntastic_auto_jump=0
 " Syntax checkers: https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers
 let g:syntastic_ruby_checkers=['rubocop', 'mri']
 
+
 " Enable syntax highlighting
 execute pathogen#infect()
 syntax on
@@ -84,6 +106,18 @@ colorscheme zenburn
 " (Stolen from the awesome Derek Wyatt)
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
+" Gnome Terminal cursor apperance
+if !exists("vimrc_autocommands_cursor_loaded")
+  let vimrc_autocommands_cursor_loaded = 1
+  if has("autocmd")
+    if executable("gconftool-2")
+      au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+      au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+      au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+      au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+    endif
+  endif
+endif
 
 " tab completion for help
 set wildmenu
@@ -130,6 +164,8 @@ set guioptions=acg
 " command tab completion similar to bash
 set wildmode=longest,list
 
+" fix tmux terminal colors
+set t_ut=
 
 " This is the timeout used while waiting for user input on a multi-keyed macro
 " or while just sitting and waiting for another key to be pressed measured
@@ -149,7 +185,7 @@ set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
 " When the page starts to scroll, keep the cursor 8 lines from the top and 8
 " lines from the bottom
-set scrolloff=8
+" set scrolloff=8
 
 " Allow the cursor to go in to "invalid" places
 set virtualedit=all
@@ -174,6 +210,7 @@ set diffopt+=iwhite
 
 " Enable search highlighting
 set hlsearch
+hi Search cterm=NONE ctermfg=yellow ctermbg=black
 
 " Incrementally match the search
 set incsearch
@@ -254,9 +291,9 @@ set expandtab
 
 " Set column width to 70
 if exists('+colorcolumn')
-  set colorcolumn=71
+	set colorcolumn=71
 else
-  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+	au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
 " Set leader as spacebar
@@ -303,3 +340,5 @@ let g:syntastic_go_checkers = ['golint']
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+
+
