@@ -42,16 +42,16 @@ Plugin 'tpope/vim-surround'
 " Fuzzy file name searching
 Plugin 'ctrlpvim/ctrlp.vim'
 
-" Vim HardTime
-Bundle 'takac/vim-hardtime'
+" " Vim HardTime
+" Bundle 'takac/vim-hardtime'
 
 call vundle#end()
 
-" HardTime configurations
-let g:hardtime_default_on = 1
-let g:hardtime_ignore_quickfix = 1
-let g:hardtime_allow_different_key = 2
-let g:hardtime_maxcount = 2
+" " HardTime configurations
+" let g:hardtime_default_on = 1
+" let g:hardtime_ignore_quickfix = 1
+" let g:hardtime_allow_different_key = 2
+" let g:hardtime_maxcount = 2
 
 
 " Attempt to determine the type of a file based on its name and possibly its
@@ -75,26 +75,26 @@ set statusline+=%#todo# "switch to todo highlight
 set statusline+=%* "switch back to normal statusline hightlight
 
 " Syntastic settings
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" Mark syntax errors with :signs
-let g:syntastic_enable_signs=1
-
-" Do not automatically jump to the error when saving the file
-" Jump feature is annoying to me as it automatically moves the cursor
-let g:syntastic_auto_jump=0
-
-" Show the error list automatically
-" Allows you to easily navigate the quick fix list
-" let g:syntastic_auto_loc_list=1
-
-" This is where the magic happens. Chain together different style checkers
-" in order to check for both style flaws and syntax errors.
-" Syntax checkers: https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers
-let g:syntastic_ruby_checkers=['rubocop', 'mri']
+"
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+"
+" " Mark syntax errors with :signs
+" let g:syntastic_enable_signs=1
+"
+" " Do not automatically jump to the error when saving the file
+" " Jump feature is annoying to me as it automatically moves the cursor
+" let g:syntastic_auto_jump=0
+"
+" " Show the error list automatically
+" " Allows you to easily navigate the quick fix list
+" " let g:syntastic_auto_loc_list=1
+"
+" " This is where the magic happens. Chain together different style checkers
+" " in order to check for both style flaws and syntax errors.
+" " Syntax checkers: https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers
+" let g:syntastic_ruby_checkers=['rubocop', 'mri']
 
 
 " Enable syntax highlighting
@@ -107,17 +107,17 @@ colorscheme zenburn
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
 " Gnome Terminal cursor apperance
-if !exists("vimrc_autocommands_cursor_loaded")
-  let vimrc_autocommands_cursor_loaded = 1
-  if has("autocmd")
-    if executable("gconftool-2")
-      au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-      au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-      au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-      au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-    endif
-  endif
-endif
+" if !exists("vimrc_autocommands_cursor_loaded")
+"   let vimrc_autocommands_cursor_loaded = 1
+"   if has("autocmd")
+"     if executable("gconftool-2")
+"       au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+"       au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+"       au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+"       au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+"     endif
+"   endif
+" endif
 
 " tab completion for help
 set wildmenu
