@@ -1,58 +1,20 @@
 " Author: Feras Aldahlawi
 " Date: Tue May 31 12:28:04 EDT 2016
 
-
 " Set the encoding to UTF-8. Why would you ever use something else!
 set encoding=utf-8
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
-set nocompatible
+" set nocompatible
 filetype off
-runtime macros/matchit.vim
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-" plugins
-" Vundle for managing plugins
-Plugin 'VundleVim/Vundle.vim'
 
-" Clean up trailing white-space automatically
-" (I could do it with `:%s/\s*$//g` but I might forget!)
-Plugin 'ntpeters/vim-better-whitespace'
+" line numbers
+set nu
 
-" Beautiful regex text align plugin
-Plugin 'junegunn/vim-easy-align'
-
-" Fugitive to keep track of code addition/deletion with Git
-Plugin 'tpope/vim-fugitive'
-
-" vim-git for coloring
-Plugin 'tpope/vim-git'
-
-" vim-ruby
-Bundle 'vim-ruby/vim-ruby'
-
-" Smart comments
-Plugin 'tomtom/tcomment_vim'
-
-" Vim Surround
-Plugin 'tpope/vim-surround'
-
-" Fuzzy file name searching
-Plugin 'ctrlpvim/ctrlp.vim'
-
-" " Vim HardTime
-" Bundle 'takac/vim-hardtime'
-
-call vundle#end()
-
-" " HardTime configurations
-" let g:hardtime_default_on = 1
-" let g:hardtime_ignore_quickfix = 1
-" let g:hardtime_allow_different_key = 2
-" let g:hardtime_maxcount = 2
-
+set lines=60 columns=200 linespace=0
+set guifont=Consolas:h11:cANSI
 
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
@@ -63,61 +25,8 @@ filetype plugin indent on
 " give us EOL
 " set list
 
-" statusline configurations
-set statusline=
-set statusline+=%h "help file flag
-set statusline+=%m "modified flag
-set statusline+=%f "read only flag
-set statusline+=%= "left/right separator
-set statusline+=%c, "cursor column
-set statusline+=\ %P "percent through file
-set statusline+=%#todo# "switch to todo highlight
-set statusline+=%* "switch back to normal statusline hightlight
-
-" Syntastic settings
-"
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-"
-" " Mark syntax errors with :signs
-" let g:syntastic_enable_signs=1
-"
-" " Do not automatically jump to the error when saving the file
-" " Jump feature is annoying to me as it automatically moves the cursor
-" let g:syntastic_auto_jump=0
-"
-" " Show the error list automatically
-" " Allows you to easily navigate the quick fix list
-" " let g:syntastic_auto_loc_list=1
-"
-" " This is where the magic happens. Chain together different style checkers
-" " in order to check for both style flaws and syntax errors.
-" " Syntax checkers: https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers
-" let g:syntastic_ruby_checkers=['rubocop', 'mri']
-
-
-" Enable syntax highlighting
-execute pathogen#infect()
 syntax on
-colorscheme zenburn
-
-" change cursor apperance in inster mode
-" (Stolen from the awesome Derek Wyatt)
-set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
-
-" Gnome Terminal cursor apperance
-" if !exists("vimrc_autocommands_cursor_loaded")
-"   let vimrc_autocommands_cursor_loaded = 1
-"   if has("autocmd")
-"     if executable("gconftool-2")
-"       au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-"       au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-"       au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-"       au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-"     endif
-"   endif
-" endif
+colorscheme kolor
 
 " tab completion for help
 set wildmenu
@@ -132,7 +41,7 @@ set ch=2
 set vb
 
 " Allow backspacing over indent, eol, and the start of an insert
-set backspace=2
+set backspace=indent,eol,start
 
 " Make sure that unsaved buffers that are to be put in the background are
 " allowed to go in there (ie. the "must save first" error doesn't come up)
@@ -241,21 +150,6 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-" Disable Arrow Keys (enforce good vim habits)
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-
-" Disable Mouse
-set mouse=c
-
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
@@ -284,9 +178,9 @@ set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F11>
 
 " Indentation settings according to personal preference.
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 set expandtab
 
 " Set column width to 70
@@ -307,38 +201,6 @@ map Y y$
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
-" plugins expect bash - not fish, zsh, etc
-set shell=bash
-
-" " we want to tell the syntastic module when to run
-" " we want to see code highlighting and checks when  we open a file
-" " but we don't care so much that it reruns when we close the file
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" Get rid of accidental trailing whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
-
 " tell vim to allow you to copy between files, remember your cursor
 " position and other little nice things like that
 set viminfo='100,\"2500,:200,%,n~/.viminfo
-
-" use goimports for formatting
-let g:go_fmt_command = "goimports"
-
-" turn highlighting on
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
-let g:syntastic_go_checkers = ['golint']
-
-" Open go doc in vertical window, horizontal, or tab
-au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
-au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
-
-
