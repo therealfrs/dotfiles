@@ -9,7 +9,6 @@ set encoding=utf-8
 " set nocompatible
 filetype off
 
-
 " line numbers
 set nu
 
@@ -26,7 +25,6 @@ filetype plugin indent on
 " set list
 
 syntax on
-colorscheme kolor
 
 " tab completion for help
 set wildmenu
@@ -39,6 +37,8 @@ set ch=2
 
 " set visual bell to nothing!
 set vb
+set t_vb=
+set novisualbell
 
 " Allow backspacing over indent, eol, and the start of an insert
 set backspace=indent,eol,start
@@ -72,9 +72,6 @@ set guioptions=acg
 
 " command tab completion similar to bash
 set wildmode=longest,list
-
-" fix tmux terminal colors
-set t_ut=
 
 " This is the timeout used while waiting for user input on a multi-keyed macro
 " or while just sitting and waiting for another key to be pressed measured
@@ -166,11 +163,6 @@ set ruler
 " dialogue asking if you wish to save changed files.
 set confirm
 
-" And reset the terminal code for the visual bell. If visualbell is set, and
-" this line is also included, vim will neither flash nor beep. If visualbell
-" is unset, this does nothing.
-set t_vb=
-
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
 
@@ -191,7 +183,7 @@ else
 endif
 
 " Set leader as spacebar
-:let mapleader = "\<Space>"
+let mapleader = "\<Space>"
 
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
@@ -204,3 +196,6 @@ nnoremap <C-L> :nohl<CR><C-L>
 " tell vim to allow you to copy between files, remember your cursor
 " position and other little nice things like that
 set viminfo='100,\"2500,:200,%,n~/.viminfo
+
+
+colorscheme kolor
