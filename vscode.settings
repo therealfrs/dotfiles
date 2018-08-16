@@ -1,0 +1,112 @@
+{
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "C:/tools/neovim/Neovim/bin/nvim.exe",
+  "git.confirmSync": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.iconTheme": "vscode-icons",
+  "vsicons.dontShowNewVersionMessage": true,
+  "vsicons.projectDetection.autoReload": true,
+  // Show leading and trailing whitespace characters (helps see tab/space mismatches)
+  "editor.renderWhitespace": "boundary",
+  // Only show suggestions based on code analysis, not on words in the file
+  "editor.wordBasedSuggestions": false,
+  // Show path to open file in the window's title bar
+  "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
+  // Trim trailing whitespace on save (helps avoid lint errors)
+  "files.trimTrailingWhitespace": true,
+  "search.followSymlinks": false,
+  "window.zoomLevel": 0,
+  "editor.fontSize": 14,
+  "explorer.confirmDelete": false,
+  "editor.formatOnPaste": true,
+  "editor.fontLigatures": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 4,
+  //vim setttings
+  "vim.leader": " ",
+  "vim.easymotion": true,
+  "vim.sneak": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.visualstar": true,
+  "vim.surround": true,
+  "vim.foldfix": true,
+  "vim.statusBarColorControl": true,
+  "vim.statusBarColors.normal": "#8FBCBB",
+  "vim.statusBarColors.insert": "#BF616A",
+  "vim.statusBarColors.visual": "#B48EAD",
+  "vim.statusBarColors.visualline": "#B48EAD",
+  "vim.statusBarColors.visualblock": "#A3BE8C",
+  "vim.statusBarColors.replace": "#D08770",
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": ["Z", "Z"],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.files.save",
+          "args": []
+        },
+        {
+          "command": "workbench.action.closeActiveEditor",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<C-l>"],
+      "after": [],
+      "commands": [
+        {
+          "command": ":nohl",
+          "args": []
+        }
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["Z", "Z"],
+      "commands": [
+        {
+          "command": "workbench.action.files.save"
+        },
+        {
+          "command": "workbench.action.closeActiveEditor"
+        }
+      ]
+    },
+    {
+      "before": ["<C-l>"],
+      "commands": [
+        {
+          "command": ":nohl"
+        }
+      ]
+    }
+  ],
+  "gitlens.keymap": "chorded",
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": false,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false,
+    "suppressResultsExplorerNotice": false,
+    "suppressShowKeyBindingsNotice": true
+  },
+  "editor.tabCompletion": true,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#B48EAD",
+    "statusBar.noFolderBackground": "#B48EAD",
+    "statusBar.debuggingBackground": "#B48EAD"
+  },
+  "gitlens.historyExplorer.enabled": false,
+  "terminal.integrated.shell.windows": "C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "workbench.sideBar.location": "right",
+"window.menuBarVisibility": "default",
+"gitlens.mode.active": "zen"
+}
