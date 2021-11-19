@@ -1,23 +1,14 @@
 set rtp+=~/.fzf
 
 set encoding=utf-8
-set statusline=2
-
 
 syntax on
-filetype on
-filetype plugin on
 filetype plugin indent on
-
-set noswapfile
 
 set wildmode=full
 set wildmenu
 
-set incsearch
 set inccommand=nosplit
-set nowrap
-
 set novisualbell
 
 set ignorecase
@@ -27,13 +18,9 @@ set clipboard& clipboard+=unnamed
 
 let mapleader = " "
 
-" make fname completion after equal signs work
-set isfname-=\=
-
 " Spaces&Tabs
 set tabstop=2
 set shiftwidth=2
-set expandtab
 set smarttab
 
 " set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
@@ -49,7 +36,6 @@ set statusline=%n\ %F%m%r%h%w\ [%{&ff}]%y\ %=[char=\%03.3b\ 0x\%02.2B]\ [r=%04l,
 set laststatus=2
 set winwidth=90
 
-
 " Title length.
 set title
 set titlelen=95
@@ -57,15 +43,11 @@ set titlelen=95
 " the cursorline is useful when working with multiple windows: it will highlight the current line in an inactive window
 set cursorline
 
-
 set guicursor=
 set nohlsearch
 set hidden
 set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
 set expandtab
-set smartindent
 set nu
 set nowrap
 set noswapfile

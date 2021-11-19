@@ -1,20 +1,13 @@
 " vim: set fdm=marker fenc=utf-8 sw=2 ts=2:
-"
 
 let g:which_key_map = {}
 let g:after_load = {}
 
 exe 'source' expand('~/.config/nvim/basics.vim')
 exe 'source' expand('~/.config/nvim/windows.vim')
-" exe 'source' expand('~/.config/nvim/frs.vim')
 
-" set guicursor=n-c-v:block-Cursor/Cursor-blinkon0
-" set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
-
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
+set guicursor=n-c-v:block-Cursor/Cursor-blinkon0
+set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
 
 nnoremap Y y$
 
@@ -56,3 +49,8 @@ configs.ciderlsp = {
 }
 nvim_lsp.ciderlsp.setup{}
 EOF
+
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
+augroup END

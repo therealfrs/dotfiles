@@ -45,10 +45,22 @@ local keymap_comma = {
   f = { 
   function()
       require('telescope.builtin').find_files {
-          find_command = { "rg", "-i", "--hidden", "--files", "-g", "!.git", "platforms/security", "third_party/ecclesia", "platforms/ecclesia", "platforms/haven", "platforms/gsys", "security/crypta"},
+          find_command = { "rg", "-i", "--hidden", "--files", "-g", "!.git", "platforms/security", "third_party/ecclesia", "platforms/ecclesia", "platforms/haven", "platforms/gsys", "security/notar", "security/crypta"},
       }
   end,
   'common files'
+  },
+  s = {
+        function()
+            require('telescope').extensions.codesearch.find_files{ }
+        end,
+  'codesearch files'
+  },
+  q = {
+        function()
+            require('telescope').extensions.codesearch.find_query{ }
+        end,
+  'codesearch files'
   },
   d = { '<Cmd>Telescope find_files cwd=%:h<CR>', 'files in dir' },
   b = { '<Cmd>Telescope buffers<CR>', 'buffers' },
@@ -169,7 +181,10 @@ wk.register(keymap_Q, { prefix = 'Q' })
 --  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 --  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 --
-vim.api.nvim_set_keymap('n', '<C-p>',":lua require('telescope.builtin').find_files { find_command = { 'rg', '-i', '--hidden', '--files', '-g', '!.git', 'platforms/security', 'third_party/ecclesia', 'platforms/ecclesia', 'platforms/haven', 'platforms/gsys', 'security/crypta'}, }<CR>", {noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-p>',
+":lua require('telescope.builtin').find_files { find_command = { 'rg', '-i', '--hidden', '--files', '-g', '!.git', 'platforms/security', 'third_party/ecclesia', 'platforms/ecclesia', 'platforms/haven', 'platforms/gsys', 'security/crypta'}, }<CR>",
+{noremap = true, silent = true }
+)
 
 -- Some VimL mappings
 vim.api.nvim_exec(
@@ -183,6 +198,10 @@ inoremap jj <Esc>
 tnoremap <Esc> <C-\><C-n>
 
 map Q <nop>
+
+vnoremap <leader>= :<C-u> FormatLines<CR>"
+vnoremap <leader>fr :<C-u> FormatLines<CR>"
+nnoremap <leader>fc :<C-u> FormatCode<CR>"
 
 " like <Enter>, but returns to the quickfix window
 autocmd BufReadPost quickfix map <buffer> <Space> <CR>z.<C-W>w

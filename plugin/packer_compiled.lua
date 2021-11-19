@@ -234,6 +234,12 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
     url = "https://github.com/simrat39/symbols-outline.nvim"
   },
+  ["telescope-codesearch.nvim"] = {
+    config = { "\27LJ\2\2»\2\0\2\a\0\v\0$\18\3\1\0009\2\0\1'\4\1\0'\5\2\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\3\0'\5\4\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\5\0'\5\6\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\a\0'\5\b\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\t\0'\5\n\0)\6\1\0B\2\5\2\18\1\2\0L\1\2\0\bg3/\14^google3/\rg3/3rdp/\26^google3/third_party/\15g3/jt/c/g/#^google3/javatests/com/google/\14g3/j/c/g/\30^google3/java/com/google/\rgoogle3/,^/google/src/cloud/[^/]+/[^/]+/google3/\tgsubÅ\1\1\0\4\0\b\0\v6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\6\0005\2\3\0003\3\4\0=\3\5\2=\2\a\1B\0\2\1K\0\1\0\rdefaults\1\0\0\17path_display\0\1\0\1\20layout_strategy\rvertical\nsetup\14telescope\frequire\0" },
+    loaded = true,
+    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/telescope-codesearch.nvim",
+    url = "sso://googler@user/vintharas/telescope-codesearch.nvim"
+  },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
@@ -256,6 +262,11 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
   },
+  ["vim-codefmt"] = {
+    loaded = true,
+    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-codefmt",
+    url = "https://github.com/google/vim-codefmt"
+  },
   ["vim-colors-meh"] = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-colors-meh",
@@ -266,6 +277,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
+  },
+  ["vim-maktaba"] = {
+    loaded = true,
+    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-maktaba",
+    url = "https://github.com/google/vim-maktaba"
   },
   ["vim-signify"] = {
     commands = { "SignifyToggle" },
@@ -317,25 +333,6 @@ time([[Config for nvim-treesitter]], false)
 time([[Config for nvim-cmp]], true)
 require('config.cmp')
 time([[Config for nvim-cmp]], false)
--- Config for: wilder.nvim
-time([[Config for wilder.nvim]], true)
-try_loadstring("\27LJ\2\2J\0\0\3\0\4\0\a6\0\0\0009\0\1\0009\0\2\0'\1\3\0+\2\1\0B\0\3\1K\0\1\0\25call config#wilder()\14nvim_exec\bapi\bvim\0", "config", "wilder.nvim")
-time([[Config for wilder.nvim]], false)
--- Config for: vim-commentary
-time([[Config for vim-commentary]], true)
-      local map = require('config.utils').map
-      map('n', '\\\\', 'gcc', {noremap = false})
-      map('v', '\\\\', 'gcc', {noremap = false})
-    
-time([[Config for vim-commentary]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-try_loadstring("\27LJ\2\0029\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
-time([[Config for trouble.nvim]], false)
--- Config for: lspsaga.nvim
-time([[Config for lspsaga.nvim]], true)
-try_loadstring("\27LJ\2\2ñ\1\0\0\6\0\b\0\0146\0\0\0'\1\1\0B\0\2\0016\0\0\0'\1\2\0B\0\2\0029\0\3\0\18\1\0\0'\2\4\0'\3\5\0'\4\6\0005\5\a\0B\1\5\1K\0\1\0\1\0\2\vsilent\2\fnoremap\1\27:Lspsaga hover_doc<CR>\6K\6n\bmap\17config.utils\19config.lspsaga\frequire\0", "config", "lspsaga.nvim")
-time([[Config for lspsaga.nvim]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 require('config.keymap')
@@ -344,10 +341,33 @@ time([[Config for which-key.nvim]], false)
 time([[Config for lightline.vim]], true)
 require('config.lightline')
 time([[Config for lightline.vim]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+try_loadstring("\27LJ\2\0029\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
+time([[Config for trouble.nvim]], false)
+-- Config for: telescope-codesearch.nvim
+time([[Config for telescope-codesearch.nvim]], true)
+try_loadstring("\27LJ\2\2»\2\0\2\a\0\v\0$\18\3\1\0009\2\0\1'\4\1\0'\5\2\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\3\0'\5\4\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\5\0'\5\6\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\a\0'\5\b\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\t\0'\5\n\0)\6\1\0B\2\5\2\18\1\2\0L\1\2\0\bg3/\14^google3/\rg3/3rdp/\26^google3/third_party/\15g3/jt/c/g/#^google3/javatests/com/google/\14g3/j/c/g/\30^google3/java/com/google/\rgoogle3/,^/google/src/cloud/[^/]+/[^/]+/google3/\tgsubÅ\1\1\0\4\0\b\0\v6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\6\0005\2\3\0003\3\4\0=\3\5\2=\2\a\1B\0\2\1K\0\1\0\rdefaults\1\0\0\17path_display\0\1\0\1\20layout_strategy\rvertical\nsetup\14telescope\frequire\0", "config", "telescope-codesearch.nvim")
+time([[Config for telescope-codesearch.nvim]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+try_loadstring("\27LJ\2\2ñ\1\0\0\6\0\b\0\0146\0\0\0'\1\1\0B\0\2\0016\0\0\0'\1\2\0B\0\2\0029\0\3\0\18\1\0\0'\2\4\0'\3\5\0'\4\6\0005\5\a\0B\1\5\1K\0\1\0\1\0\2\vsilent\2\fnoremap\1\27:Lspsaga hover_doc<CR>\6K\6n\bmap\17config.utils\19config.lspsaga\frequire\0", "config", "lspsaga.nvim")
+time([[Config for lspsaga.nvim]], false)
+-- Config for: vim-commentary
+time([[Config for vim-commentary]], true)
+      local map = require('config.utils').map
+      map('n', '\\\\', 'gcc', {noremap = false})
+      map('v', '\\\\', 'gcc', {noremap = false})
+    
+time([[Config for vim-commentary]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require('config.telescope')
 time([[Config for telescope.nvim]], false)
+-- Config for: wilder.nvim
+time([[Config for wilder.nvim]], true)
+try_loadstring("\27LJ\2\2J\0\0\3\0\4\0\a6\0\0\0009\0\1\0009\0\2\0'\1\3\0+\2\1\0B\0\3\1K\0\1\0\25call config#wilder()\14nvim_exec\bapi\bvim\0", "config", "wilder.nvim")
+time([[Config for wilder.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

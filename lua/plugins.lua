@@ -3,11 +3,11 @@
 local packer = nil
 
 local function init()
-  if packer == nil then
-    packer = require 'packer'
-    packer.init { disable_commands = true }
-  end
-  local use = packer.use
+    if packer == nil then
+        packer = require 'packer'
+        packer.init { disable_commands = true }
+    end
+    local use = packer.use
 
   use 'wbthomason/packer.nvim'
 
@@ -26,11 +26,6 @@ local function init()
     ]],
   }
 
-  -- use { 
-  --     'sso://googler@user/vintharas/telescope-codesearch.nvim', 
-  --     requires = {'nvim-telescope/telescope.nvim'}, 
-  --     config = [[require('config.telescope-codesearch')]]
-  -- }
 
 
   use {'nvim-telescope/telescope-fzy-native.nvim'}
@@ -53,7 +48,6 @@ local function init()
     config = [[require('config.treesitter')]],
   }
 
-  -- use {'google/vim-codefmt', requires = {'google/vim-maktaba'}}
 
   -- LSP
   use { 'onsails/lspkind-nvim', 'neovim/nvim-lspconfig', 'kabouzeid/nvim-lspinstall' }
@@ -125,8 +119,6 @@ local function init()
   
   use '~/.fzf'
   use 'junegunn/fzf.vim'
-  -- use {'neoclide/coc.nvim', branch = 'release', config = [[require('config.fzf')]] }
-  -- use {'antoinemadec/coc-fzf', branch= 'release'}
 
 
   use {
@@ -136,6 +128,54 @@ local function init()
       vim.g.signify_disable_by_default = true
     end,
   }
+
+  -- google specific
+  use { 
+      'sso://googler@user/vintharas/telescope-codesearch.nvim', 
+      requires = {'nvim-telescope/telescope.nvim'},
+      config = function()
+            require('telescope').setup {
+                defaults =  {
+                    -- The vertical layout strategy is good to handle long paths like those in
+                    -- google3 repos because you have nearly the full screen to display a file path.
+                    -- The caveat is that the preview area is smaller.
+                    layout_strategy = 'vertical',
+                    -- Common paths in google3 repos are collapsed following the example of Cider
+                    -- It is nice to keep this as a user config rather than part of
+                    -- telescope-codesearch because it can be reused by other telescope pickers.
+                    path_display = function(_, path)
+                        path = path:gsub("^/google/src/cloud/[^/]+/[^/]+/google3/", "google3/", 1)
+                        path = path:gsub("^google3/java/com/google/", "g3/j/c/g/", 1)
+                        path = path:gsub("^google3/javatests/com/google/", "g3/jt/c/g/", 1)
+                        path = path:gsub("^google3/third_party/", "g3/3rdp/", 1)
+                        path = path:gsub("^google3/", "g3/", 1)
+                        return path
+                    end,
+                }
+            }
+      end,
+  }
+  use {'google/vim-codefmt', requires = {'google/vim-maktaba'}}
+  -- use {'sso://googler@user/codefmt-google', requires = {'google/vim-maktaba', 'google/vim-codefmt', 'google/codefmt'}, config = [[
+  --   augroup autoformat_settings
+  --       autocmd FileType borg,gcl,patchpanel AutoFormatBuffer gclfmt
+  --       autocmd FileType bzl AutoFormatBuffer buildifier
+  --       autocmd FileType c,cpp,javascript,typescript AutoFormatBuffer clang-format
+  --       autocmd FileType dart AutoFormatBuffer dartfmt
+  --       autocmd FileType go AutoFormatBuffer gofmt
+  --       autocmd FileType java AutoFormatBuffer google-java-format
+  --       autocmd FileType jslayout AutoFormatBuffer jslfmt
+  --       autocmd FileType markdown AutoFormatBuffer mdformat
+  --       autocmd FileType ncl AutoFormatBuffer nclfmt
+  --       autocmd FileType python AutoFormatBuffer pyformat
+  --       autocmd FileType soy AutoFormatBuffer soyfmt
+  --       autocmd FileType textpb AutoFormatBuffer text-proto-format
+  --       autocmd FileType proto AutoFormatBuffer protofmt
+  --       autocmd FileType sql AutoFormatBuffer format_sql
+  --       " autocmd FileType html,css,json AutoFormatBuffer js-beautify
+  --   augroup END
+  --   ]],
+  --   }
 
   _G.local_plugins(use)
 end

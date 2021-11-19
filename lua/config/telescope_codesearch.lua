@@ -20,13 +20,3 @@ require('telescope').setup {
     end,
   },
 }
-
--- These custom mappings let you open telescope-codesearch quickly
-vim.api.nvim_set_keymap('n', '<leader>ss',
-  [[<cmd>lua require('telescope').extensions.codesearch.find_files{}<CR>]],
-  { noremap = true, silent=true }
-)
-vim.api.nvim_set_keymap('n', '<leader>sd',
-  [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]],
-  { noremap = true, silent=true }
-
