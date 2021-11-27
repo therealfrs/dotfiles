@@ -9,8 +9,6 @@ local on_attach_vim = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  -- require"lsp_signature".on_attach({bind = true, floating_window = false})
-
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Set autocommands conditional on server_capabilities
@@ -72,15 +70,6 @@ if vim.loop.fs_stat(ciderlsp) ~= nil then
       settings = {}
     }
   }
-  -- configs.clangd = {
-  --   default_config = {
-  --     cmd = {'/usr/bin/clangd', '--background-index'},
-  --     -- cmd = {'/usr/bin/clangd', '-index-file=/tmp/clangd_index.idx'},
-  --     filetypes = {"c", "cpp", "objc", "objcpp"},
-  --     root_dir = util.root_pattern("WORKSPACE"),
-  --     settings = {}
-  --   }
-  -- }
   servers = {cider_lsp = true}
 end
 
