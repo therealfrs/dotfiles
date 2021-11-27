@@ -5,6 +5,7 @@ let g:after_load = {}
 
 exe 'source' expand('~/.config/nvim/basics.vim')
 exe 'source' expand('~/.config/nvim/windows.vim')
+exe 'source' expand('~/.config/nvim/google.vim')
 
 set guicursor=n-c-v:block-Cursor/Cursor-blinkon0
 set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150

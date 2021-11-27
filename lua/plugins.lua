@@ -106,14 +106,11 @@ local function init()
   
 
   -- color schemes
-  use 'rktjmp/lush.nvim'
-
   use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 
 
   use 'cideM/yui'
   use 'davidosomething/vim-colors-meh'
-  use 'folke/tokyonight.nvim'
 
   use 'simrat39/symbols-outline.nvim'
   
@@ -123,9 +120,13 @@ local function init()
 
   use {
     'mhinz/vim-signify',
-    cmd = { 'SignifyToggle' },
+    -- cmd = { 'SignifyToggle' },
     config = function()
-      vim.g.signify_disable_by_default = true
+      vim.g['signify_vcs_list'] = {'hg'}
+      vim.g['signify_vcs_cmds'] = { ['hg'] = 'hg diff -r .^ --config defaults.diff= --nodates -U0 -- %f' }
+      vim.g['signify_realtime'] = 1
+      vim.g['signify_cursorhold_insert'] = 0
+      vim.g['signify_cursorhold_normal'] = 0
     end,
   }
 

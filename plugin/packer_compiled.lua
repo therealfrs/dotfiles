@@ -251,11 +251,6 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["tokyonight.nvim"] = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
-    url = "https://github.com/folke/tokyonight.nvim"
-  },
   ["trouble.nvim"] = {
     config = { "\27LJ\2\0029\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0" },
     loaded = true,
@@ -284,12 +279,9 @@ _G.packer_plugins = {
     url = "https://github.com/google/vim-maktaba"
   },
   ["vim-signify"] = {
-    commands = { "SignifyToggle" },
-    config = { "\27LJ\2\2<\0\0\2\0\3\0\0056\0\0\0009\0\1\0+\1\2\0=\1\2\0K\0\1\0\31signify_disable_by_default\6g\bvim\0" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/opt/vim-signify",
+    config = { "\27LJ\2\2\2\0\0\2\0\t\0\0216\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0006\0\0\0009\0\1\0)\1\0\0=\1\a\0006\0\0\0009\0\1\0)\1\0\0=\1\b\0K\0\1\0\30signify_cursorhold_normal\30signify_cursorhold_insert\21signify_realtime\1\0\1\ahg>hg diff -r .^ --config defaults.diff= --nodates -U0 -- %f\21signify_vcs_cmds\1\2\0\0\ahg\21signify_vcs_list\6g\bvim\0" },
+    loaded = true,
+    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-signify",
     url = "https://github.com/mhinz/vim-signify"
   },
   ["vim-vsnip"] = {
@@ -325,22 +317,25 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('config.treesitter')
-time([[Config for nvim-treesitter]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('config.telescope')
+time([[Config for telescope.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require('config.cmp')
 time([[Config for nvim-cmp]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-require('config.keymap')
-time([[Config for which-key.nvim]], false)
--- Config for: lightline.vim
-time([[Config for lightline.vim]], true)
-require('config.lightline')
-time([[Config for lightline.vim]], false)
+-- Config for: wilder.nvim
+time([[Config for wilder.nvim]], true)
+try_loadstring("\27LJ\2\2J\0\0\3\0\4\0\a6\0\0\0009\0\1\0009\0\2\0'\1\3\0+\2\1\0B\0\3\1K\0\1\0\25call config#wilder()\14nvim_exec\bapi\bvim\0", "config", "wilder.nvim")
+time([[Config for wilder.nvim]], false)
+-- Config for: vim-commentary
+time([[Config for vim-commentary]], true)
+      local map = require('config.utils').map
+      map('n', '\\\\', 'gcc', {noremap = false})
+      map('v', '\\\\', 'gcc', {noremap = false})
+    
+time([[Config for vim-commentary]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\0029\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
@@ -353,27 +348,27 @@ time([[Config for telescope-codesearch.nvim]], false)
 time([[Config for lspsaga.nvim]], true)
 try_loadstring("\27LJ\2\2–\1\0\0\6\0\b\0\0146\0\0\0'\1\1\0B\0\2\0016\0\0\0'\1\2\0B\0\2\0029\0\3\0\18\1\0\0'\2\4\0'\3\5\0'\4\6\0005\5\a\0B\1\5\1K\0\1\0\1\0\2\vsilent\2\fnoremap\1\27:Lspsaga hover_doc<CR>\6K\6n\bmap\17config.utils\19config.lspsaga\frequire\0", "config", "lspsaga.nvim")
 time([[Config for lspsaga.nvim]], false)
--- Config for: vim-commentary
-time([[Config for vim-commentary]], true)
-      local map = require('config.utils').map
-      map('n', '\\\\', 'gcc', {noremap = false})
-      map('v', '\\\\', 'gcc', {noremap = false})
-    
-time([[Config for vim-commentary]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require('config.telescope')
-time([[Config for telescope.nvim]], false)
--- Config for: wilder.nvim
-time([[Config for wilder.nvim]], true)
-try_loadstring("\27LJ\2\2J\0\0\3\0\4\0\a6\0\0\0009\0\1\0009\0\2\0'\1\3\0+\2\1\0B\0\3\1K\0\1\0\25call config#wilder()\14nvim_exec\bapi\bvim\0", "config", "wilder.nvim")
-time([[Config for wilder.nvim]], false)
+-- Config for: lightline.vim
+time([[Config for lightline.vim]], true)
+require('config.lightline')
+time([[Config for lightline.vim]], false)
+-- Config for: vim-signify
+time([[Config for vim-signify]], true)
+try_loadstring("\27LJ\2\2\2\0\0\2\0\t\0\0216\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0006\0\0\0009\0\1\0)\1\0\0=\1\a\0006\0\0\0009\0\1\0)\1\0\0=\1\b\0K\0\1\0\30signify_cursorhold_normal\30signify_cursorhold_insert\21signify_realtime\1\0\1\ahg>hg diff -r .^ --config defaults.diff= --nodates -U0 -- %f\21signify_vcs_cmds\1\2\0\0\ahg\21signify_vcs_list\6g\bvim\0", "config", "vim-signify")
+time([[Config for vim-signify]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('config.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+require('config.keymap')
+time([[Config for which-key.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Goyo lua require("packer.load")({'goyo.vim'}, { cmd = "Goyo", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file TSPlayground lua require("packer.load")({'playground'}, { cmd = "TSPlayground", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file SignifyToggle lua require("packer.load")({'vim-signify'}, { cmd = "SignifyToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
