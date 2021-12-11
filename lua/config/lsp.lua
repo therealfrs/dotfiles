@@ -1,82 +1,39 @@
-local lspconfig = require 'lspconfig'
-local configs = require 'lspconfig/configs'
-local util = require 'lspconfig/util'
-local lsp_install = require 'lspinstall'
-
-lsp_install.setup()
-
-local on_attach_vim = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec([[
-      hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-      hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]], false)
-  end
-end
-
-local kind_symbols = {
-  Text = '',
-  Method = 'Ƒ',
-  Function = 'ƒ',
-  Constructor = '',
-  Variable = '',
-  Class = '',
-  Interface = 'ﰮ',
-  Module = '',
-  Property = '',
-  Unit = '',
-  Value = '',
-  Enum = '了',
-  Keyword = '',
-  Snippet = '﬌',
-  Color = '',
-  File = '',
-  Folder = '',
-  EnumMember = '',
-  Constant = '',
-  Struct = ''
+local nvim_lsp = require('lspconfig')
+local configs = require('lspconfig.configs')
+configs.ciderlsp = {
+ default_config = {
+   cmd = {'/google/bin/releases/cider/ciderlsp/ciderlsp', '--tooltag=nvim-lsp' , '--noforward_sync_responses'};
+   filetypes = {'c', 'cpp', 'java', 'proto', 'textproto', 'go', 'python', 'bzl'};
+   root_dir = nvim_lsp.util.root_pattern('BUILD');
+   settings = {};
+ }
 }
--- require('lspkind').init {symbol_map = kind_symbols}
-require('lspkind').init {}
 
--- local servers = {ccls = true}
-local servers = {ccls = true}
+nvim_lsp.ciderlsp.setup{
+  on_attach = function(client, bufnr)
+    local opts = { noremap = true, silent = true }
+    -- See `:help vim.lsp.*` for documentation on any of the below functions.
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "K",  "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
-local ciderlsp = '/google/bin/releases/editor-devtools/ciderlsp'
-
-if vim.loop.fs_stat(ciderlsp) ~= nil then
-
-  configs.cider_lsp = {
-    default_config = {
-      cmd = {
-        ciderlsp, '--tooltag=-nvim', '--noforward_sync_responses',
-        '--hub_addr=blade:languageservices'
-      },
-      -- filetypes = {"typescript", "python"},
-      filetypes = {"c", "cpp", "objc", "objcpp", "typescript", "python", "go", "java"},
-      root_dir = util.root_pattern("WORKSPACE"),
-      settings = {}
-    }
-  }
-  servers = {cider_lsp = true}
-end
-
--- add all servers installed by lspinstall
-for _, server in pairs(lsp_install.installed_servers()) do servers[server] =
-    true end
-
-for server, _ in pairs(servers) do
-  lspconfig[server].setup {on_attach = on_attach_vim}
-end
+    vim.api.nvim_command("augroup LSP")
+    vim.api.nvim_command("autocmd!")
+    if client.resolved_capabilities.document_highlight then
+      vim.api.nvim_command("autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()")
+      vim.api.nvim_command("autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()")
+      vim.api.nvim_command("autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()")
+    end
+    vim.api.nvim_command("augroup END")
+  end
+}

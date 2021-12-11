@@ -35,6 +35,11 @@ local function init()
     config = [[require('config.telescope')]],
   }
 
+  -- use {'nvim-telescope/telescope-fzf-native.nvim', 
+  --   run = 'make',
+  --   config = [[require('config.telescope')]],
+  -- }
+
   -- Treesitter
   use { 'nvim-treesitter/playground', cmd = { 'TSPlayground' } }
 
@@ -50,7 +55,8 @@ local function init()
 
 
   -- LSP
-  use { 'onsails/lspkind-nvim', 'neovim/nvim-lspconfig', 'kabouzeid/nvim-lspinstall' }
+  use { 'onsails/lspkind-nvim', 'kabouzeid/nvim-lspinstall' }
+  use { 'neovim/nvim-lspconfig', config = [[require('config.lsp')]] }
   use {
     'glepnir/lspsaga.nvim',
     config = function()
@@ -84,7 +90,7 @@ local function init()
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
       'ray-x/cmp-treesitter',
-      { 'andersevenrud/compe-tmux', branch = 'cmp' },
+      { 'andersevenrud/cmp-tmux', branch = 'cmp' },
     },
   }
 
@@ -134,27 +140,7 @@ local function init()
   use { 
       'sso://googler@user/vintharas/telescope-codesearch.nvim', 
       requires = {'nvim-telescope/telescope.nvim'},
-      config = function()
-            require('telescope').setup {
-                defaults =  {
-                    -- The vertical layout strategy is good to handle long paths like those in
-                    -- google3 repos because you have nearly the full screen to display a file path.
-                    -- The caveat is that the preview area is smaller.
-                    layout_strategy = 'vertical',
-                    -- Common paths in google3 repos are collapsed following the example of Cider
-                    -- It is nice to keep this as a user config rather than part of
-                    -- telescope-codesearch because it can be reused by other telescope pickers.
-                    path_display = function(_, path)
-                        path = path:gsub("^/google/src/cloud/[^/]+/[^/]+/google3/", "google3/", 1)
-                        path = path:gsub("^google3/java/com/google/", "g3/j/c/g/", 1)
-                        path = path:gsub("^google3/javatests/com/google/", "g3/jt/c/g/", 1)
-                        path = path:gsub("^google3/third_party/", "g3/3rdp/", 1)
-                        path = path:gsub("^google3/", "g3/", 1)
-                        return path
-                    end,
-                }
-            }
-      end,
+      config = [[require('config.telescope_codesearch')]],
   }
   use {'google/vim-codefmt', requires = {'google/vim-maktaba'}}
   -- use {'sso://googler@user/codefmt-google', requires = {'google/vim-maktaba', 'google/vim-codefmt', 'google/codefmt'}, config = [[

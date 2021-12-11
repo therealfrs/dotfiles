@@ -1,6 +1,4 @@
 -- Load codesearch extension in telescoe
-require('telescope').load_extension('codesearch')
-
 require('telescope').setup {
   defaults =  {
     -- The vertical layout strategy is good to handle long paths like those in
@@ -20,3 +18,4 @@ require('telescope').setup {
     end,
   },
 }
+require('telescope').load_extension('codesearch')

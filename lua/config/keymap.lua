@@ -89,18 +89,18 @@ local keymap_comma = {
 }
 wk.register(keymap_comma, { prefix = ',' })
 
-local keymap_ctrl = {
-  name = 'control',
-  p = { 
-  function()
-      require('telescope.builtin').find_files {
-          find_command = { "rg", "-i", "--hidden", "--files", "-g", "!.git", "platforms/security", "third_party/ecclesia", "platforms/ecclesia", "platforms/haven", "platforms/gsys", "security/crypta"},
-      }
-  end,
-  'common files'
-  },
-}
-wk.register(keymap_ctrl, { prefix = '<Ctrl>' })
+-- local keymap_ctrl = {
+--   name = 'control',
+--   p = { 
+--   function()
+--       require('telescope.builtin').find_files {
+--           find_command = { "rg", "-i", "--hidden", "--files", "-g", "!.git", "platforms/security", "third_party/ecclesia", "platforms/ecclesia", "platforms/haven", "platforms/gsys", "security/crypta"},
+--       }
+--   end,
+--   'common files'
+--   },
+-- }
+-- wk.register(keymap_ctrl, { prefix = '<Ctrl>' })
 
 local keymap_s = {
   name = 'window',
@@ -159,8 +159,8 @@ wk.register(keymap_space, { prefix = '<space>' })
 
 local keymap_g = {
   name = 'go',
-  D = { '<Cmd>Telescope lsp_definitions <CR>', 'LSP definitions' },
-  d = { '<Cmd>lua vim.lsp.buf.definition()<CR>', 'LSP definition' },
+  d = { '<Cmd>Telescope lsp_definitions <CR>', 'LSP definitions' },
+  D = { '<Cmd>lua vim.lsp.buf.definition()<CR>', 'LSP definition' },
   i = { '<Cmd>Telescope lsp_implementation<CR>', 'LSP implementation' },
   r = {'<Cmd>Telescope lsp_references<CR>', 'LSP references'},
   s = { '<Cmd>call swap#prerequisite("n")<CR>g@l', 'swap interactive' },
@@ -185,6 +185,11 @@ vim.api.nvim_set_keymap('n', '<C-p>',
 ":lua require('telescope.builtin').find_files { find_command = { 'rg', '-i', '--hidden', '--files', '-g', '!.git', 'platforms/security', 'third_party/ecclesia', 'platforms/ecclesia', 'platforms/haven', 'platforms/gsys', 'security/crypta'}, }<CR>",
 {noremap = true, silent = true }
 )
+
+vim.api.nvim_set_keymap('n', '<C-c>', '<ESC>', {noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<C-c>', '<ESC>', {noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-c>', '<ESC>', {noremap = true, silent = true })
+
 
 -- Some VimL mappings
 vim.api.nvim_exec(

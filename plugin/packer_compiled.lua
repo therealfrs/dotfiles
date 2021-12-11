@@ -57,7 +57,7 @@ end
 time([[Luarocks path setup]], false)
 time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
-  local success, result = pcall(loadstring(s))
+  local success, result = pcall(loadstring(s), name, _G.packer_plugins[name])
   if not success then
     vim.schedule(function()
       vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
+  ["cmp-tmux"] = {
+    loaded = true,
+    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cmp-tmux",
+    url = "https://github.com/andersevenrud/cmp-tmux"
+  },
   ["cmp-treesitter"] = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cmp-treesitter",
@@ -108,11 +113,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
-  },
-  ["compe-tmux"] = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/compe-tmux",
-    url = "https://github.com/andersevenrud/compe-tmux"
   },
   cpsm = {
     loaded = true,
@@ -171,6 +171,7 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
+    config = { "require('config.lsp')" },
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
@@ -235,7 +236,7 @@ _G.packer_plugins = {
     url = "https://github.com/simrat39/symbols-outline.nvim"
   },
   ["telescope-codesearch.nvim"] = {
-    config = { "\27LJ\2\2»\2\0\2\a\0\v\0$\18\3\1\0009\2\0\1'\4\1\0'\5\2\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\3\0'\5\4\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\5\0'\5\6\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\a\0'\5\b\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\t\0'\5\n\0)\6\1\0B\2\5\2\18\1\2\0L\1\2\0\bg3/\14^google3/\rg3/3rdp/\26^google3/third_party/\15g3/jt/c/g/#^google3/javatests/com/google/\14g3/j/c/g/\30^google3/java/com/google/\rgoogle3/,^/google/src/cloud/[^/]+/[^/]+/google3/\tgsubÅ\1\1\0\4\0\b\0\v6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\6\0005\2\3\0003\3\4\0=\3\5\2=\2\a\1B\0\2\1K\0\1\0\rdefaults\1\0\0\17path_display\0\1\0\1\20layout_strategy\rvertical\nsetup\14telescope\frequire\0" },
+    config = { "require('config.telescope_codesearch')" },
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/telescope-codesearch.nvim",
     url = "sso://googler@user/vintharas/telescope-codesearch.nvim"
@@ -329,25 +330,6 @@ time([[Config for nvim-cmp]], false)
 time([[Config for wilder.nvim]], true)
 try_loadstring("\27LJ\2\2J\0\0\3\0\4\0\a6\0\0\0009\0\1\0009\0\2\0'\1\3\0+\2\1\0B\0\3\1K\0\1\0\25call config#wilder()\14nvim_exec\bapi\bvim\0", "config", "wilder.nvim")
 time([[Config for wilder.nvim]], false)
--- Config for: vim-commentary
-time([[Config for vim-commentary]], true)
-      local map = require('config.utils').map
-      map('n', '\\\\', 'gcc', {noremap = false})
-      map('v', '\\\\', 'gcc', {noremap = false})
-    
-time([[Config for vim-commentary]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-try_loadstring("\27LJ\2\0029\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
-time([[Config for trouble.nvim]], false)
--- Config for: telescope-codesearch.nvim
-time([[Config for telescope-codesearch.nvim]], true)
-try_loadstring("\27LJ\2\2»\2\0\2\a\0\v\0$\18\3\1\0009\2\0\1'\4\1\0'\5\2\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\3\0'\5\4\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\5\0'\5\6\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\a\0'\5\b\0)\6\1\0B\2\5\2\18\1\2\0\18\3\1\0009\2\0\1'\4\t\0'\5\n\0)\6\1\0B\2\5\2\18\1\2\0L\1\2\0\bg3/\14^google3/\rg3/3rdp/\26^google3/third_party/\15g3/jt/c/g/#^google3/javatests/com/google/\14g3/j/c/g/\30^google3/java/com/google/\rgoogle3/,^/google/src/cloud/[^/]+/[^/]+/google3/\tgsubÅ\1\1\0\4\0\b\0\v6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\6\0005\2\3\0003\3\4\0=\3\5\2=\2\a\1B\0\2\1K\0\1\0\rdefaults\1\0\0\17path_display\0\1\0\1\20layout_strategy\rvertical\nsetup\14telescope\frequire\0", "config", "telescope-codesearch.nvim")
-time([[Config for telescope-codesearch.nvim]], false)
--- Config for: lspsaga.nvim
-time([[Config for lspsaga.nvim]], true)
-try_loadstring("\27LJ\2\2ñ\1\0\0\6\0\b\0\0146\0\0\0'\1\1\0B\0\2\0016\0\0\0'\1\2\0B\0\2\0029\0\3\0\18\1\0\0'\2\4\0'\3\5\0'\4\6\0005\5\a\0B\1\5\1K\0\1\0\1\0\2\vsilent\2\fnoremap\1\27:Lspsaga hover_doc<CR>\6K\6n\bmap\17config.utils\19config.lspsaga\frequire\0", "config", "lspsaga.nvim")
-time([[Config for lspsaga.nvim]], false)
 -- Config for: lightline.vim
 time([[Config for lightline.vim]], true)
 require('config.lightline')
@@ -356,14 +338,37 @@ time([[Config for lightline.vim]], false)
 time([[Config for vim-signify]], true)
 try_loadstring("\27LJ\2\2è\2\0\0\2\0\t\0\0216\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0006\0\0\0009\0\1\0)\1\0\0=\1\a\0006\0\0\0009\0\1\0)\1\0\0=\1\b\0K\0\1\0\30signify_cursorhold_normal\30signify_cursorhold_insert\21signify_realtime\1\0\1\ahg>hg diff -r .^ --config defaults.diff= --nodates -U0 -- %f\21signify_vcs_cmds\1\2\0\0\ahg\21signify_vcs_list\6g\bvim\0", "config", "vim-signify")
 time([[Config for vim-signify]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('config.treesitter')
-time([[Config for nvim-treesitter]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+try_loadstring("\27LJ\2\0029\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
+time([[Config for trouble.nvim]], false)
+-- Config for: telescope-codesearch.nvim
+time([[Config for telescope-codesearch.nvim]], true)
+require('config.telescope_codesearch')
+time([[Config for telescope-codesearch.nvim]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+try_loadstring("\27LJ\2\2ñ\1\0\0\6\0\b\0\0146\0\0\0'\1\1\0B\0\2\0016\0\0\0'\1\2\0B\0\2\0029\0\3\0\18\1\0\0'\2\4\0'\3\5\0'\4\6\0005\5\a\0B\1\5\1K\0\1\0\1\0\2\vsilent\2\fnoremap\1\27:Lspsaga hover_doc<CR>\6K\6n\bmap\17config.utils\19config.lspsaga\frequire\0", "config", "lspsaga.nvim")
+time([[Config for lspsaga.nvim]], false)
+-- Config for: vim-commentary
+time([[Config for vim-commentary]], true)
+      local map = require('config.utils').map
+      map('n', '\\\\', 'gcc', {noremap = false})
+      map('v', '\\\\', 'gcc', {noremap = false})
+    
+time([[Config for vim-commentary]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 require('config.keymap')
 time([[Config for which-key.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('config.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('config.lsp')
+time([[Config for nvim-lspconfig]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
