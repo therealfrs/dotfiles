@@ -1,9 +1,5 @@
 local cmp = require'cmp'
-local lspkind = require'lspkind'
 cmp.setup({
-  formatting = {
-    format = lspkind.cmp_format(),
-  },
   experimental = {
       native_menu = false,
       ghost_text = true,

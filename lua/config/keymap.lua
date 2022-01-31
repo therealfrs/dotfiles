@@ -21,25 +21,8 @@ wk.setup {
   },
 }
 
--- vim.api.nvim_set_option('timeoutlen',500)
-function isGoogle3Dir()
-  return vim.fn.getcwd():find("google.src.cloud.frs") ~= nil
-end
-
-
 -- scope files to be search under google3
 local find_files_cmd = { "rg", "-i", "--files", "-g", "!.git"}
-if isGoogle3Dir() then
-  table.insert(find_files_cmd,  "platforms/security")
-  table.insert(find_files_cmd, "third_party/ecclesia")
-  table.insert(find_files_cmd,   "platforms/ecclesia")
-  table.insert(find_files_cmd,   "platforms/haven")
-  table.insert(find_files_cmd,   "platforms/gsys")
-  table.insert(find_files_cmd,  "security/notar")
-  table.insert(find_files_cmd,   "security/crypta")
-  table.insert(find_files_cmd,   "experimental/users/frs")
-end
-
 
 local keymap_comma = {
   name = 'comma',
@@ -54,7 +37,7 @@ local keymap_comma = {
   p = {
     function()
       require('telescope.builtin').find_files {
-        find_command = { 'hg', 'status', '--rev=p4base', '-man' },
+        find_command = { 'git', 'status'},
       }
     end,
     'changed files',
@@ -93,31 +76,12 @@ local keymap_comma = {
       function()
           require('telescope.builtin').live_grep {
               cwd = '%:h',
-              -- find_command = {""}'<Cmd>Telescope live_grep cwd=%:h<CR>', 'live grep' 
           }
       end,
       'live grep'
   },
-  n = { '<Cmd>Telescope find_files cwd=~/notes<CR>', 'notes' },
-  N = {
-    '<Cmd>cd ~/notes<CR>:Telescope tags ctags_file=~/notes/.tags<CR>',
-    'note tags',
-  },
 }
 wk.register(keymap_comma, { prefix = ',' })
-
--- local keymap_ctrl = {
---   name = 'control',
---   p = { 
---   function()
---       require('telescope.builtin').find_files {
---           find_command = { "rg", "-i", "--hidden", "--files", "-g", "!.git", "platforms/security", "third_party/ecclesia", "platforms/ecclesia", "platforms/haven", "platforms/gsys", "security/crypta"},
---       }
---   end,
---   'common files'
---   },
--- }
--- wk.register(keymap_ctrl, { prefix = '<Ctrl>' })
 
 local keymap_s = {
   name = 'window',

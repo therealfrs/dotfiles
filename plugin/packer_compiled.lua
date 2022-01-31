@@ -74,11 +74,6 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/.fzf",
     url = "/usr/local/google/home/frs/.fzf"
   },
-  ["asyncrun.vim"] = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/asyncrun.vim",
-    url = "https://github.com/skywind3000/asyncrun.vim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -114,6 +109,11 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cmp-treesitter",
     url = "https://github.com/ray-x/cmp-treesitter"
   },
+  ["cmp-vsnip"] = {
+    loaded = true,
+    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
+    url = "https://github.com/hrsh7th/cmp-vsnip"
+  },
   cpsm = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cpsm",
@@ -129,14 +129,6 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/fzy-lua-native",
     url = "https://github.com/romgrk/fzy-lua-native"
   },
-  ["goyo.vim"] = {
-    commands = { "Goyo" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/opt/goyo.vim",
-    url = "https://github.com/junegunn/goyo.vim"
-  },
   ["gruvbox.nvim"] = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
@@ -147,22 +139,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/lightline.vim",
     url = "https://github.com/itchyny/lightline.vim"
-  },
-  ["lspkind-nvim"] = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
-    url = "https://github.com/onsails/lspkind-nvim"
-  },
-  ["lspsaga.nvim"] = {
-    config = { "\27LJ\2\2–\1\0\0\6\0\b\0\0146\0\0\0'\1\1\0B\0\2\0016\0\0\0'\1\2\0B\0\2\0029\0\3\0\18\1\0\0'\2\4\0'\3\5\0'\4\6\0005\5\a\0B\1\5\1K\0\1\0\1\0\2\vsilent\2\fnoremap\1\27:Lspsaga hover_doc<CR>\6K\6n\bmap\17config.utils\19config.lspsaga\frequire\0" },
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
-    url = "https://github.com/glepnir/lspsaga.nvim"
-  },
-  ["lush.nvim"] = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/lush.nvim",
-    url = "https://github.com/rktjmp/lush.nvim"
   },
   ["nvim-cmp"] = {
     config = { "require('config.cmp')" },
@@ -225,21 +201,10 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
-  ["splice.vim"] = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/splice.vim",
-    url = "https://github.com/sjl/splice.vim"
-  },
   ["symbols-outline.nvim"] = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
     url = "https://github.com/simrat39/symbols-outline.nvim"
-  },
-  ["telescope-codesearch.nvim"] = {
-    config = { "require('config.telescope_codesearch')" },
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/telescope-codesearch.nvim",
-    url = "sso://googler@user/vintharas/telescope-codesearch.nvim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
@@ -258,32 +223,30 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
   },
-  ["vim-codefmt"] = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-codefmt",
-    url = "https://github.com/google/vim-codefmt"
-  },
-  ["vim-colors-meh"] = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-colors-meh",
-    url = "https://github.com/davidosomething/vim-colors-meh"
-  },
   ["vim-commentary"] = {
     config = { "      local map = require('config.utils').map\n      map('n', '\\\\\\\\', 'gcc', {noremap = false})\n      map('v', '\\\\\\\\', 'gcc', {noremap = false})\n    " },
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
   },
-  ["vim-maktaba"] = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-maktaba",
-    url = "https://github.com/google/vim-maktaba"
-  },
   ["vim-signify"] = {
-    config = { "\27LJ\2\2\2\0\0\2\0\t\0\0216\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0006\0\0\0009\0\1\0)\1\0\0=\1\a\0006\0\0\0009\0\1\0)\1\0\0=\1\b\0K\0\1\0\30signify_cursorhold_normal\30signify_cursorhold_insert\21signify_realtime\1\0\1\ahg>hg diff -r .^ --config defaults.diff= --nodates -U0 -- %f\21signify_vcs_cmds\1\2\0\0\ahg\21signify_vcs_list\6g\bvim\0" },
+    config = { "\27LJ\2\2’\2\0\0\2\0\t\0\0216\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0006\0\0\0009\0\1\0)\1\0\0=\1\a\0006\0\0\0009\0\1\0)\1\0\0=\1\b\0K\0\1\0\30signify_cursorhold_normal\30signify_cursorhold_insert\21signify_realtime\1\0\1\bgit?git diff -r .^ --config defaults.diff= --nodates -U0 -- %f\21signify_vcs_cmds\1\2\0\0\bgit\21signify_vcs_list\6g\bvim\0" },
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-signify",
     url = "https://github.com/mhinz/vim-signify"
+  },
+  ["vim-vsnip"] = {
+    config = { "require('config.vsnip')" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/opt/vim-vsnip",
+    url = "https://github.com/hrsh7th/vim-vsnip"
+  },
+  ["vim-vsnip-integ"] = {
+    loaded = true,
+    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ",
+    url = "https://github.com/hrsh7th/vim-vsnip-integ"
   },
   ["which-key.nvim"] = {
     config = { "require('config.keymap')" },
@@ -296,19 +259,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/wilder.nvim",
     url = "https://github.com/gelguy/wilder.nvim"
-  },
-  yui = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/yui",
-    url = "https://github.com/cideM/yui"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('config.lsp')
-time([[Config for nvim-lspconfig]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('config.telescope')
+time([[Config for telescope.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require('config.cmp')
@@ -321,26 +279,22 @@ time([[Config for wilder.nvim]], false)
 time([[Config for lightline.vim]], true)
 require('config.lightline')
 time([[Config for lightline.vim]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-require('config.keymap')
-time([[Config for which-key.nvim]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\0029\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
 time([[Config for trouble.nvim]], false)
--- Config for: telescope-codesearch.nvim
-time([[Config for telescope-codesearch.nvim]], true)
-require('config.telescope_codesearch')
-time([[Config for telescope-codesearch.nvim]], false)
--- Config for: lspsaga.nvim
-time([[Config for lspsaga.nvim]], true)
-try_loadstring("\27LJ\2\2–\1\0\0\6\0\b\0\0146\0\0\0'\1\1\0B\0\2\0016\0\0\0'\1\2\0B\0\2\0029\0\3\0\18\1\0\0'\2\4\0'\3\5\0'\4\6\0005\5\a\0B\1\5\1K\0\1\0\1\0\2\vsilent\2\fnoremap\1\27:Lspsaga hover_doc<CR>\6K\6n\bmap\17config.utils\19config.lspsaga\frequire\0", "config", "lspsaga.nvim")
-time([[Config for lspsaga.nvim]], false)
 -- Config for: vim-signify
 time([[Config for vim-signify]], true)
-try_loadstring("\27LJ\2\2\2\0\0\2\0\t\0\0216\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0006\0\0\0009\0\1\0)\1\0\0=\1\a\0006\0\0\0009\0\1\0)\1\0\0=\1\b\0K\0\1\0\30signify_cursorhold_normal\30signify_cursorhold_insert\21signify_realtime\1\0\1\ahg>hg diff -r .^ --config defaults.diff= --nodates -U0 -- %f\21signify_vcs_cmds\1\2\0\0\ahg\21signify_vcs_list\6g\bvim\0", "config", "vim-signify")
+try_loadstring("\27LJ\2\2’\2\0\0\2\0\t\0\0216\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0006\0\0\0009\0\1\0)\1\0\0=\1\a\0006\0\0\0009\0\1\0)\1\0\0=\1\b\0K\0\1\0\30signify_cursorhold_normal\30signify_cursorhold_insert\21signify_realtime\1\0\1\bgit?git diff -r .^ --config defaults.diff= --nodates -U0 -- %f\21signify_vcs_cmds\1\2\0\0\bgit\21signify_vcs_list\6g\bvim\0", "config", "vim-signify")
 time([[Config for vim-signify]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+require('config.keymap')
+time([[Config for which-key.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('config.treesitter')
+time([[Config for nvim-treesitter]], false)
 -- Config for: vim-commentary
 time([[Config for vim-commentary]], true)
       local map = require('config.utils').map
@@ -348,21 +302,23 @@ time([[Config for vim-commentary]], true)
       map('v', '\\\\', 'gcc', {noremap = false})
     
 time([[Config for vim-commentary]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require('config.telescope')
-time([[Config for telescope.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('config.treesitter')
-time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('config.lsp')
+time([[Config for nvim-lspconfig]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Goyo lua require("packer.load")({'goyo.vim'}, { cmd = "Goyo", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file TSPlayground lua require("packer.load")({'playground'}, { cmd = "TSPlayground", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'vim-vsnip'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)
