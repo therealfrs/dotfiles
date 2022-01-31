@@ -74,6 +74,11 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/.fzf",
     url = "/usr/local/google/home/frs/.fzf"
   },
+  ["asyncrun.vim"] = {
+    loaded = true,
+    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/asyncrun.vim",
+    url = "https://github.com/skywind3000/asyncrun.vim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -108,11 +113,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cmp-treesitter",
     url = "https://github.com/ray-x/cmp-treesitter"
-  },
-  ["cmp-vsnip"] = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
-    url = "https://github.com/hrsh7th/cmp-vsnip"
   },
   cpsm = {
     loaded = true,
@@ -285,19 +285,6 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-signify",
     url = "https://github.com/mhinz/vim-signify"
   },
-  ["vim-vsnip"] = {
-    config = { "require('config.vsnip')" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/opt/vim-vsnip",
-    url = "https://github.com/hrsh7th/vim-vsnip"
-  },
-  ["vim-vsnip-integ"] = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ",
-    url = "https://github.com/hrsh7th/vim-vsnip-integ"
-  },
   ["which-key.nvim"] = {
     config = { "require('config.keymap')" },
     loaded = true,
@@ -318,10 +305,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require('config.telescope')
-time([[Config for telescope.nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('config.lsp')
+time([[Config for nvim-lspconfig]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require('config.cmp')
@@ -334,10 +321,10 @@ time([[Config for wilder.nvim]], false)
 time([[Config for lightline.vim]], true)
 require('config.lightline')
 time([[Config for lightline.vim]], false)
--- Config for: vim-signify
-time([[Config for vim-signify]], true)
-try_loadstring("\27LJ\2\2\2\0\0\2\0\t\0\0216\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0006\0\0\0009\0\1\0)\1\0\0=\1\a\0006\0\0\0009\0\1\0)\1\0\0=\1\b\0K\0\1\0\30signify_cursorhold_normal\30signify_cursorhold_insert\21signify_realtime\1\0\1\ahg>hg diff -r .^ --config defaults.diff= --nodates -U0 -- %f\21signify_vcs_cmds\1\2\0\0\ahg\21signify_vcs_list\6g\bvim\0", "config", "vim-signify")
-time([[Config for vim-signify]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+require('config.keymap')
+time([[Config for which-key.nvim]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\0029\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
@@ -350,6 +337,10 @@ time([[Config for telescope-codesearch.nvim]], false)
 time([[Config for lspsaga.nvim]], true)
 try_loadstring("\27LJ\2\2–\1\0\0\6\0\b\0\0146\0\0\0'\1\1\0B\0\2\0016\0\0\0'\1\2\0B\0\2\0029\0\3\0\18\1\0\0'\2\4\0'\3\5\0'\4\6\0005\5\a\0B\1\5\1K\0\1\0\1\0\2\vsilent\2\fnoremap\1\27:Lspsaga hover_doc<CR>\6K\6n\bmap\17config.utils\19config.lspsaga\frequire\0", "config", "lspsaga.nvim")
 time([[Config for lspsaga.nvim]], false)
+-- Config for: vim-signify
+time([[Config for vim-signify]], true)
+try_loadstring("\27LJ\2\2\2\0\0\2\0\t\0\0216\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0006\0\0\0009\0\1\0)\1\0\0=\1\a\0006\0\0\0009\0\1\0)\1\0\0=\1\b\0K\0\1\0\30signify_cursorhold_normal\30signify_cursorhold_insert\21signify_realtime\1\0\1\ahg>hg diff -r .^ --config defaults.diff= --nodates -U0 -- %f\21signify_vcs_cmds\1\2\0\0\ahg\21signify_vcs_list\6g\bvim\0", "config", "vim-signify")
+time([[Config for vim-signify]], false)
 -- Config for: vim-commentary
 time([[Config for vim-commentary]], true)
       local map = require('config.utils').map
@@ -357,18 +348,14 @@ time([[Config for vim-commentary]], true)
       map('v', '\\\\', 'gcc', {noremap = false})
     
 time([[Config for vim-commentary]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-require('config.keymap')
-time([[Config for which-key.nvim]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('config.telescope')
+time([[Config for telescope.nvim]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 require('config.treesitter')
 time([[Config for nvim-treesitter]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('config.lsp')
-time([[Config for nvim-lspconfig]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
@@ -376,13 +363,6 @@ pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Goyo lua require("
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file TSPlayground lua require("packer.load")({'playground'}, { cmd = "TSPlayground", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
-vim.cmd [[augroup packer_load_aucmds]]
-vim.cmd [[au!]]
-  -- Event lazy-loads
-time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'vim-vsnip'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-time([[Defining lazy-load event autocommands]], false)
-vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)

@@ -6,3 +6,6 @@ else
   command W w | F | e | redraw!
   command WA wa | F | windo e | redraw!
 endif
+
+nnoremap <leader>ww :W<CR>
+nnoremap <leader>w :w<CR>

@@ -11,6 +11,8 @@ local function init()
 
   use 'wbthomason/packer.nvim'
 
+  use 'skywind3000/asyncrun.vim'
+
   use { 'itchyny/lightline.vim', config = [[require('config.lightline')]] }
 
   use { 'sjl/splice.vim' }
@@ -86,20 +88,20 @@ local function init()
       'hrsh7th/cmp-omni',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
-      'hrsh7th/cmp-vsnip',
+      -- 'hrsh7th/cmp-vsnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
       'ray-x/cmp-treesitter',
-      { 'andersevenrud/cmp-tmux', branch = 'cmp' },
+      'andersevenrud/cmp-tmux',
     },
   }
 
-  use {
-    'hrsh7th/vim-vsnip',
-    config = [[require('config.vsnip')]],
-    event = 'InsertEnter *',
-  }
-  use { 'hrsh7th/vim-vsnip-integ' }
+  -- use {
+  --   'hrsh7th/vim-vsnip',
+  --   config = [[require('config.vsnip')]],
+  --   event = 'InsertEnter *',
+  -- }
+  -- use { 'hrsh7th/vim-vsnip-integ' }
 
   -- Completion on :,/,etc.
   use {

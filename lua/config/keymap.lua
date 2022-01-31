@@ -1,4 +1,3 @@
--- local wk = require('whichkey_setup')
 local wk = require 'which-key'
 wk.setup {
   plugins = {
@@ -23,6 +22,24 @@ wk.setup {
 }
 
 -- vim.api.nvim_set_option('timeoutlen',500)
+function isGoogle3Dir()
+  return vim.fn.getcwd():find("google.src.cloud.frs") ~= nil
+end
+
+
+-- scope files to be search under google3
+local find_files_cmd = { "rg", "-i", "--files", "-g", "!.git"}
+if isGoogle3Dir() then
+  table.insert(find_files_cmd,  "platforms/security")
+  table.insert(find_files_cmd, "third_party/ecclesia")
+  table.insert(find_files_cmd,   "platforms/ecclesia")
+  table.insert(find_files_cmd,   "platforms/haven")
+  table.insert(find_files_cmd,   "platforms/gsys")
+  table.insert(find_files_cmd,  "security/notar")
+  table.insert(find_files_cmd,   "security/crypta")
+  table.insert(find_files_cmd,   "experimental/users/frs")
+end
+
 
 local keymap_comma = {
   name = 'comma',
@@ -45,7 +62,7 @@ local keymap_comma = {
   f = { 
   function()
       require('telescope.builtin').find_files {
-          find_command = { "rg", "-i", "--hidden", "--files", "-g", "!.git", "platforms/security", "third_party/ecclesia", "platforms/ecclesia", "platforms/haven", "platforms/gsys", "security/notar", "security/crypta"},
+          find_command = find_files_cmd,
       }
   end,
   'common files'
@@ -182,7 +199,7 @@ wk.register(keymap_Q, { prefix = 'Q' })
 --  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 --
 vim.api.nvim_set_keymap('n', '<C-p>',
-":lua require('telescope.builtin').find_files { find_command = { 'rg', '-i', '--hidden', '--files', '-g', '!.git', 'platforms/security', 'third_party/ecclesia', 'platforms/ecclesia', 'platforms/haven', 'platforms/gsys', 'security/crypta'}, }<CR>",
+":lua require('telescope.builtin').find_files { find_command = { '" .. table.concat(find_files_cmd, "','") .. "' }, }<CR>",
 {noremap = true, silent = true }
 )
 
