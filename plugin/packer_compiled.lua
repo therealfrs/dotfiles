@@ -69,11 +69,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  [".fzf"] = {
-    loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/.fzf",
-    url = "/usr/local/google/home/frs/.fzf"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -119,10 +114,10 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/cpsm",
     url = "https://github.com/nixprime/cpsm"
   },
-  ["fzf.vim"] = {
+  fzf = {
     loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/fzf.vim",
-    url = "https://github.com/junegunn/fzf.vim"
+    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/fzf",
+    url = "https://github.com/junegunn/fzf"
   },
   ["fzy-lua-native"] = {
     loaded = true,
@@ -206,10 +201,10 @@ _G.packer_plugins = {
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
     url = "https://github.com/simrat39/symbols-outline.nvim"
   },
-  ["telescope-fzy-native.nvim"] = {
+  ["telescope-fzf-native.nvim"] = {
     loaded = true,
-    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
-    url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
+    path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     config = { "require('config.telescope')" },
@@ -230,7 +225,6 @@ _G.packer_plugins = {
     url = "https://github.com/tpope/vim-commentary"
   },
   ["vim-signify"] = {
-    config = { "\27LJ\2\2’\2\0\0\2\0\t\0\0216\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0006\0\0\0009\0\1\0)\1\0\0=\1\a\0006\0\0\0009\0\1\0)\1\0\0=\1\b\0K\0\1\0\30signify_cursorhold_normal\30signify_cursorhold_insert\21signify_realtime\1\0\1\bgit?git diff -r .^ --config defaults.diff= --nodates -U0 -- %f\21signify_vcs_cmds\1\2\0\0\bgit\21signify_vcs_list\6g\bvim\0" },
     loaded = true,
     path = "/usr/local/google/home/frs/.local/share/nvim/site/pack/packer/start/vim-signify",
     url = "https://github.com/mhinz/vim-signify"
@@ -283,18 +277,6 @@ time([[Config for lightline.vim]], false)
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\0029\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
 time([[Config for trouble.nvim]], false)
--- Config for: vim-signify
-time([[Config for vim-signify]], true)
-try_loadstring("\27LJ\2\2’\2\0\0\2\0\t\0\0216\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0006\0\0\0009\0\1\0)\1\0\0=\1\a\0006\0\0\0009\0\1\0)\1\0\0=\1\b\0K\0\1\0\30signify_cursorhold_normal\30signify_cursorhold_insert\21signify_realtime\1\0\1\bgit?git diff -r .^ --config defaults.diff= --nodates -U0 -- %f\21signify_vcs_cmds\1\2\0\0\bgit\21signify_vcs_list\6g\bvim\0", "config", "vim-signify")
-time([[Config for vim-signify]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-require('config.keymap')
-time([[Config for which-key.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('config.treesitter')
-time([[Config for nvim-treesitter]], false)
 -- Config for: vim-commentary
 time([[Config for vim-commentary]], true)
       local map = require('config.utils').map
@@ -302,6 +284,14 @@ time([[Config for vim-commentary]], true)
       map('v', '\\\\', 'gcc', {noremap = false})
     
 time([[Config for vim-commentary]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('config.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+require('config.keymap')
+time([[Config for which-key.nvim]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require('config.lsp')
@@ -324,5 +314,6 @@ if should_profile then save_profiles() end
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end

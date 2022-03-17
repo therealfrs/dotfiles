@@ -22,22 +22,20 @@ wk.setup {
 }
 
 -- scope files to be search under google3
-local find_files_cmd = { "rg", "-i", "--files", "-g", "!.git"}
+-- local find_files_cmd = { "rg", "-i", "--files", "-g", "!.git"}
 
 local keymap_comma = {
   name = 'comma',
   r = {
     function()
-      require('telescope.builtin').oldfiles {
-        entry_maker = require('config.telescope_entry').gen_from_file(),
-      }
+      require('telescope.builtin').oldfiles { }
     end,
     'recent files',
   },
   p = {
     function()
-      require('telescope.builtin').find_files {
-        find_command = { 'git', 'status'},
+      require('telescope.builtin').git_status {
+        -- find_command = { 'git', 'status', '-s'},
       }
     end,
     'changed files',
@@ -45,30 +43,22 @@ local keymap_comma = {
   f = { 
   function()
       require('telescope.builtin').find_files {
-          find_command = find_files_cmd,
+          -- find_command = find_files_cmd,
       }
   end,
   'common files'
   },
-  s = {
-        function()
-            require('telescope').extensions.codesearch.find_files{ }
-        end,
-  'codesearch files'
+  d = { 
+      function()
+        require('telescope.builtin').find_files {
+          cwd = '%:h',
+        }
+      end,
+    'files in dir'
   },
-  q = {
-        function()
-            require('telescope').extensions.codesearch.find_query{ }
-        end,
-  'codesearch files'
-  },
-  d = { '<Cmd>Telescope find_files cwd=%:h<CR>', 'files in dir' },
-  b = { '<Cmd>Telescope buffers<CR>', 'buffers' },
-  B = {
+  b = {
     function()
-      require('telescope.builtin').buffers {
-        entry_maker = require('config.telescope_entry').gen_from_buffer(),
-      }
+      require('telescope.builtin').buffers { }
     end,
     'buffers',
   },
@@ -79,6 +69,13 @@ local keymap_comma = {
           }
       end,
       'live grep'
+  },
+  q = { 
+      function()
+          require('telescope.builtin').quickfix {
+          }
+      end,
+      'quick fix'
   },
 }
 wk.register(keymap_comma, { prefix = ',' })
@@ -103,17 +100,10 @@ local keymap_space = {
   },
   D = { '<cmd>lua vim.lsp.buf.type_definition()<CR>' },
   -- K = {'<cmd>lua vim.lsp.buf.signature_help()<CR>'},
-  K = { '<Cmd>:Lspsaga signature_help<CR>', 'signature help' },
-  h = { '<Cmd>:Lspsaga hover_doc<CR>', 'hover doc' },
   -- h = {'<cmd>lua vim.lsp.buf.hover()<CR>'},
   -- r = {'<cmd>lua vim.lsp.buf.rename()<CR>'},
-  r = { '<Cmd>:Lspsaga rename<CR>', 'rename' },
-  s = { '<Cmd>:Lspsaga signature_help<CR>', 'signature help' },
   -- ca = {'<cmd>lua vim.lsp.buf.code_action()<CR>'},
-  a = { '<Cmd>:Lspsaga code_action<CR>', 'preview definition' },
-  d = { '<Cmd>:Lspsaga preview_definition<CR>', 'preview definition' },
   -- e = {'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>'}
-  e = { '<Cmd>:Lspsaga show_line_diagnostics<CR>', 'rename' },
   b = {
     name = 'debug',
     c = { '<Cmd>:lua require"dap".continue()<CR>', 'continue (dap)' },
@@ -162,10 +152,9 @@ wk.register(keymap_Q, { prefix = 'Q' })
 --  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 --  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 --
-vim.api.nvim_set_keymap('n', '<C-p>',
-":lua require('telescope.builtin').find_files { find_command = { '" .. table.concat(find_files_cmd, "','") .. "' }, }<CR>",
-{noremap = true, silent = true }
-)
+
+vim.api.nvim_set_keymap('n', '<C-p>', ":FZF<CR>", {noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ',g', "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>", {noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<C-c>', '<ESC>', {noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<C-c>', '<ESC>', {noremap = true, silent = true })

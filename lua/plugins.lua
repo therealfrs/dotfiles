@@ -24,10 +24,13 @@ local function init()
 
 
 
-  use {'nvim-telescope/telescope-fzy-native.nvim'}
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
+    requires = { 
+      { 'nvim-lua/popup.nvim' }, 
+      { 'nvim-lua/plenary.nvim' }, 
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    },
     config = [[require('config.telescope')]],
   }
 
@@ -96,19 +99,20 @@ local function init()
 
   use 'simrat39/symbols-outline.nvim'
   
-  use '~/.fzf'
-  use 'junegunn/fzf.vim'
+  -- use '~/.fzf'
+  -- use 'junegunn/fzf.vim'
+  use { 'junegunn/fzf', run = './install --bin', }
 
   use {
     'mhinz/vim-signify',
     -- cmd = { 'SignifyToggle' },
-    config = function()
-      vim.g['signify_vcs_list'] = {'git'}
-      vim.g['signify_vcs_cmds'] = { ['git'] = 'git diff -r .^ --config defaults.diff= --nodates -U0 -- %f' }
-      vim.g['signify_realtime'] = 1
-      vim.g['signify_cursorhold_insert'] = 0
-      vim.g['signify_cursorhold_normal'] = 0
-    end,
+    -- config = function()
+    --   vim.g['signify_vcs_list'] = {'git'}
+    --   vim.g['signify_vcs_cmds'] = { ['git'] = 'git diff -r .^ --config defaults.diff= --nodates -U0 -- %f' }
+    --   vim.g['signify_realtime'] = 1
+    --   vim.g['signify_cursorhold_insert'] = 0
+    --   vim.g['signify_cursorhold_normal'] = 0
+    -- end,
   }
 
   _G.local_plugins(use)

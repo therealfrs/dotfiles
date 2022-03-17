@@ -74,6 +74,9 @@ set shortmess+=c
 
 set colorcolumn=80
 
+set grepprg=rg\ --vimgrep
+set grepformat^=%f:%l:%c:%m
+
 augroup AutoCursorLine
   " Turn on cursorline only on active window
   autocmd WinLeave * setlocal nocursorline
@@ -96,3 +99,8 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
+
+" Chromium filetypes
+autocmd BufNewFile,BufRead *.star set syntax=python
+autocmd BufNewFile,BufRead *.gn set syntax=python
+

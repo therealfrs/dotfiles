@@ -1,11 +1,11 @@
 local nvim_lsp = require('lspconfig')
 local configs = require('lspconfig.configs')
-configs.ciderlsp = {
+configs.clangd = {
  default_config = {
    -- cmd = {'/google/bin/releases/cider/ciderlsp/ciderlsp', '--tooltag=nvim-lsp' , '--noforward_sync_responses'};
-   cmd = {'/usr/bin/clangd'};
-   filetypes = {'c', 'cpp', 'java', 'proto', 'textproto', 'go', 'python', 'bzl'};
-   root_dir = nvim_lsp.util.root_pattern('BUILD');
+   cmd = {'/usr/bin/clangd', '--header-insertion=never'};
+   filetypes = {'c', 'cpp', 'java', 'go', 'python', 'bzl'};
+   root_dir = nvim_lsp.util.root_pattern('compile_commands.json');
    settings = {};
  }
 }
@@ -13,6 +13,26 @@ configs.ciderlsp = {
 nvim_lsp.clangd.setup{
   on_attach = function(client, bufnr)
     local opts = { noremap = true, silent = true }
+      require('lspconfig').clangd.setup {
+        handlers = {
+          ['textDocument/clangd.fileStatus'] = function(err, result, ctx, cfg)
+            local buf = vim.fn.bufnr(vim.uri_to_fname(result.uri))
+            if buf < 0 then return end
+            local state = ''
+            if result.state == 'idle' then
+              state = '✓'
+            elseif string.find(result.state, 'parsing include', 0, true) then
+              state = '⟳'
+            elseif string.find(result.state, 'queued', 0, true) then
+              state = '…'
+            end
+            vim.b[buf].lsp_status = state
+          end
+        },
+        init_options = { clangdFileStatus = true },
+      }
+    end,
+  -- }
     -- See `:help vim.lsp.*` for documentation on any of the below functions.
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
@@ -28,13 +48,14 @@ nvim_lsp.clangd.setup{
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
-    vim.api.nvim_command("augroup LSP")
-    vim.api.nvim_command("autocmd!")
-    if client.resolved_capabilities.document_highlight then
-      vim.api.nvim_command("autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()")
-      vim.api.nvim_command("autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()")
-      vim.api.nvim_command("autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()")
-    end
-    vim.api.nvim_command("augroup END")
-  end
+    -- vim.api.nvim_command("augroup LSP")
+    -- vim.api.nvim_command("autocmd!")
+    -- if client.resolved_capabilities.document_highlight then
+    --   vim.api.nvim_command("autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()")
+    --   vim.api.nvim_command("autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()")
+    --   vim.api.nvim_command("autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()")
+    -- end
+    -- vim.api.nvim_command("augroup END")
+  -- end
 }
+nvim_lsp.pyright.setup({})
