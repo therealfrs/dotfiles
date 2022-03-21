@@ -78,6 +78,14 @@ local keymap_comma = {
       end,
       'live grep'
   },
+  w = { 
+      function()
+          require('telescope.builtin').grep_string {
+            search = vim.fn.expand("<cword>"),
+          }
+      end,
+      'live grep'
+  },
   q = { 
       function()
           require('telescope.builtin').quickfix {
