@@ -58,4 +58,3 @@ nvim_lsp.clangd.setup{
     -- vim.api.nvim_command("augroup END")
   -- end
 }
-nvim_lsp.pyright.setup({})

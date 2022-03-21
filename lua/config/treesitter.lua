@@ -26,12 +26,12 @@ ts_configs.setup {
     select = {
       enable = true,
       keymaps = {
-        ['iF'] = {
-          python = '(function_definition) @function',
-          cpp = '(function_definition) @function',
-          c = '(function_definition) @function',
-          java = '(method_declaration) @function'
-        },
+        -- ['iF'] = {
+        --   python = '(function_definition) @function',
+        --   cpp = '(function_definition) @function',
+        --   c = '(function_definition) @function',
+        --   java = '(method_declaration) @function'
+        -- },
         -- or you use the queries from supported languages with textobjects.scm
         ['af'] = '@function.outer',
         ['if'] = '@function.inner',
