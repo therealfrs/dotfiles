@@ -65,7 +65,15 @@ local keymap_comma = {
   g = { 
       function()
           require('telescope.builtin').live_grep {
-              cwd = '%:h',
+              -- cwd = '%:h',
+          }
+      end,
+      'live grep'
+  },
+  w = { 
+      function()
+          require('telescope.builtin').grep_string {
+            search = vim.fn.expand("<cword>"),
           }
       end,
       'live grep'

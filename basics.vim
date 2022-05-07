@@ -103,4 +103,3 @@ endif
 " Chromium filetypes
 autocmd BufNewFile,BufRead *.star set syntax=python
 autocmd BufNewFile,BufRead *.gn set syntax=python
-

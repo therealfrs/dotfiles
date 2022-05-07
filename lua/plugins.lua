@@ -1,4 +1,4 @@
--- vim.cmd [[packadd packer.nvim]]
+vim.cmd [[packadd packer.nvim]]
 
 local packer = nil
 
@@ -99,9 +99,11 @@ local function init()
 
   use 'simrat39/symbols-outline.nvim'
   
-  -- use '~/.fzf'
-  -- use 'junegunn/fzf.vim'
-  use { 'junegunn/fzf', run = './install --bin', }
+  use { 
+    'junegunn/fzf', 
+    run = './install --bin', 
+    config = [[require('config.fzf')]],
+  }
 
   use {
     'mhinz/vim-signify',

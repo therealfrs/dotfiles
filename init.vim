@@ -4,7 +4,6 @@ let g:which_key_map = {}
 let g:after_load = {}
 
 exe 'source' expand('~/.config/nvim/basics.vim')
-exe 'source' expand('~/.config/nvim/windows.vim')
 exe 'source' expand('~/.config/nvim/google.vim')
 
 set guicursor=n-c-v:block-Cursor/Cursor-blinkon0
