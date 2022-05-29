@@ -101,5 +101,21 @@ if exists('+termguicolors')
 endif
 
 " Chromium filetypes
-autocmd BufNewFile,BufRead *.star set syntax=python
-autocmd BufNewFile,BufRead *.gn set syntax=python
+augroup filetype
+        au! BufRead,BufNewFile *.gyp    set filetype=python expandtab tabstop=2 shiftwidth=2
+        au! BufRead,BufNewFile *.gypi   set filetype=python expandtab tabstop=2 shiftwidth=2
+        au! BufRead,BufNewFile DEPS     set filetype=python expandtab tabstop=2 shiftwidth=2
+        au! BufRead,BufNewFile cl_description* set filetype=gitcommit
+        au! BufNewFile,BufRead *.star set syntax=python
+        au! BufNewFile,BufRead *.gn set syntax=python
+augroup END
+
+" Chromium clang-format
+let s:chromium_path = system("echo -n ${CHROMIUM_PATH}")
+let s:script = s:chromium_path .
+  \'/buildtools/clang_format/script/clang-format.py'
+let s:shortcut = has('mac') ? "<D-k>" : "<C-k>"
+let s:pyf = has("python3") ? ":py3f" : ":pyf"
+
+execute "map" s:shortcut s:pyf s:script . "<CR>"
+execute "imap" s:shortcut "<ESC>" s:pyf s:script . "<CR>i"
