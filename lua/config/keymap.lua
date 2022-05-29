@@ -93,6 +93,13 @@ local keymap_comma = {
       end,
       'quick fix'
   },
+  j = {
+      function()
+          require('telescope.builtin').jumplist {
+          }
+      end,
+      'jump list'
+  },
 }
 wk.register(keymap_comma, { prefix = ',' })
 
