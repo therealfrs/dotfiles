@@ -4,11 +4,14 @@ configs.clangd = {
  default_config = {
    -- cmd = {'/google/bin/releases/cider/ciderlsp/ciderlsp', '--tooltag=nvim-lsp' , '--noforward_sync_responses'};
    cmd = {'/usr/bin/clangd', '--header-insertion=never'};
-   filetypes = {'c', 'cpp', 'java', 'go', 'python', 'bzl'};
+   filetypes = {'c', 'cpp', 'java', 'go', 'bzl'};
    root_dir = nvim_lsp.util.root_pattern('compile_commands.json');
    settings = {};
  }
 }
+
+
+nvim_lsp.pyright.setup{ }
 
 nvim_lsp.clangd.setup{
   on_attach = function(client, bufnr)
