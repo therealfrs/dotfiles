@@ -1,7 +1,7 @@
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local previewers = require("telescope.previewers")
-local action_state = require("telescope.actions.state")
+-- local action_state = require("telescope.actions.state")
 local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 
@@ -12,7 +12,7 @@ telescope.setup({
   --   file_sorter = require("telescope.sorters").get_fzy_sorter,
     layout_strategy = "vertical",
     prompt_prefix = " >",
-    color_devicons = true,
+    -- color_devicons = true,
 
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,

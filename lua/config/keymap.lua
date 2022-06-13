@@ -161,19 +161,19 @@ local keymap_Q = {
 }
 wk.register(keymap_Q, { prefix = 'Q' })
 
---  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
---  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
---  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
---  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
---  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
---
-
 vim.api.nvim_set_keymap('n', '<C-p>', ":FZF<CR>", {noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', ',g', "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>", {noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<C-c>', '<ESC>', {noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<C-c>', '<ESC>', {noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-c>', '<ESC>', {noremap = true, silent = true })
+
+vim.api.nvim_set_keymap(
+  'n',
+  '<C-_>',
+  ':Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top <CR>',
+  {noremap = true, silent = true }
+)
 
 
 -- Some VimL mappings
