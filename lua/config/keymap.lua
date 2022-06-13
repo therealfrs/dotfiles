@@ -168,13 +168,19 @@ vim.api.nvim_set_keymap('n', '<C-c>', '<ESC>', {noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<C-c>', '<ESC>', {noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-c>', '<ESC>', {noremap = true, silent = true })
 
+curr_buffer_keymap = function()
+  local builtin = require("telescope.builtin")
+  local themes = require("telescope.themes")
+  local opt = themes.get_ivy({sorting_strategy="ascending"})
+  builtin.current_buffer_fuzzy_find(opt)
+end
+
 vim.api.nvim_set_keymap(
   'n',
   '<C-_>',
-  ':Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top <CR>',
+  '<cmd>lua curr_buffer_keymap()<CR>',
   {noremap = true, silent = true }
 )
-
 
 -- Some VimL mappings
 vim.api.nvim_exec(
