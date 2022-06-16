@@ -92,6 +92,14 @@ local keymap_comma = {
       end,
       'jump list'
   },
+
+  s = {
+      function()
+          require('telescope.builtin').treesitter {
+          }
+      end,
+      'Symbols'
+  },
 }
 wk.register(keymap_comma, { prefix = ',' })
 
