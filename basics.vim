@@ -74,7 +74,7 @@ set shortmess+=c
 
 set colorcolumn=80
 
-set grepprg=rg\ --vimgrep
+set grepprg=rg\ -L\ --vimgrep
 set grepformat^=%f:%l:%c:%m
 
 augroup AutoCursorLine

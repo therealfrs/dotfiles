@@ -105,6 +105,10 @@ local function init()
     config = [[require('config.fzf')]],
   }
 
+  -- install cppman first using
+  -- `pip install cppman`
+  use {'gauteh/vim-cppman' }
+
   use {
     'mhinz/vim-signify',
     -- cmd = { 'SignifyToggle' },
