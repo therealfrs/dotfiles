@@ -46,6 +46,8 @@ local function init()
     run = ':TSUpdate',
     config = [[require('config.treesitter')]],
   }
+  use { 'nvim-treesitter/nvim-treesitter-context' }
+
 
   -- LSP
   use {'kabouzeid/nvim-lspinstall' }
