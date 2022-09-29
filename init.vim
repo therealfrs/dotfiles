@@ -10,6 +10,8 @@ set guicursor=n-c-v:block-Cursor/Cursor-blinkon0
 set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
 
 nnoremap Y y$
+" yank in visual mode doesn't not jump the cursor.
+vnoremap y ygv<Esc>
 
 " colorscheme lush_plain
 set background=dark " or light if you want light mode
