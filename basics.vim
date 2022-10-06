@@ -77,6 +77,12 @@ set colorcolumn=80
 set grepprg=rg\ -L\ --vimgrep
 set grepformat^=%f:%l:%c:%m
 
+" Set clang-format as the default formatter
+if executable('clang-format')
+  set formatexpr=
+  set formatprg=clang-format
+endif
+
 augroup AutoCursorLine
   " Turn on cursorline only on active window
   autocmd WinLeave * setlocal nocursorline
