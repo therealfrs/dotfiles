@@ -81,6 +81,7 @@ set grepformat^=%f:%l:%c:%m
 if executable('clang-format')
   set formatexpr=
   set formatprg=clang-format
+  set equalprg=clang-format
 endif
 
 augroup AutoCursorLine
@@ -116,12 +117,13 @@ augroup filetype
         au! BufNewFile,BufRead *.gn set syntax=python
 augroup END
 
-" Chromium clang-format
-let s:chromium_path = system("echo -n ${CHROMIUM_PATH}")
-let s:script = s:chromium_path .
-  \'/buildtools/clang_format/script/clang-format.py'
-let s:shortcut = has('mac') ? "<D-k>" : "<C-k>"
-let s:pyf = has("python3") ? ":py3f" : ":pyf"
+" format on save
+function FormatBuffer()
+  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+    let cursor_pos = getpos('.')
+    :%!clang-format
+    call setpos('.', cursor_pos)
+  endif
+endfunction
 
-execute "map" s:shortcut s:pyf s:script . "<CR>"
-execute "imap" s:shortcut "<ESC>" s:pyf s:script . "<CR>i"
+autocmd BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp,*.vert,*.frag :call FormatBuffer()
