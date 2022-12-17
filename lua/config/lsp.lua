@@ -13,6 +13,8 @@ configs.clangd = {
 
 nvim_lsp.pyright.setup{ }
 
+nvim_lsp.gopls.setup{}
+
 nvim_lsp.clangd.setup{
   on_attach = function(client, bufnr)
     local opts = { noremap = true, silent = true }
