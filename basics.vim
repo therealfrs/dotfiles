@@ -77,13 +77,6 @@ set colorcolumn=80
 set grepprg=rg\ -L\ --vimgrep
 set grepformat^=%f:%l:%c:%m
 
-" Set clang-format as the default formatter
-if executable('clang-format')
-  set formatexpr=
-  set formatprg=clang-format
-  set equalprg=clang-format
-endif
-
 augroup AutoCursorLine
   " Turn on cursorline only on active window
   autocmd WinLeave * setlocal nocursorline
@@ -117,13 +110,19 @@ augroup filetype
         au! BufNewFile,BufRead *.gn set syntax=python
 augroup END
 
-" format on save
-function FormatBuffer()
-  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
-    let cursor_pos = getpos('.')
-    :%!clang-format
-    call setpos('.', cursor_pos)
-  endif
-endfunction
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType rust AutoFormatBuffer rustfmt
+  autocmd FileType vue AutoFormatBuffer prettier
+  autocmd FileType swift AutoFormatBuffer swift-format
+augroup END
 
-autocmd BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp,*.vert,*.frag :call FormatBuffer()
+autocmd BufWritePre :call FormatCode
