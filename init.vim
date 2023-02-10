@@ -15,7 +15,7 @@ vnoremap y ygv<Esc>
 
 " colorscheme lush_plain
 set background=dark " or light if you want light mode
-colorscheme gruvbox 
+colorscheme gruvbox-material
 
 " read machine specific configuration
 if filereadable(expand('~/.nvimrc.local'))

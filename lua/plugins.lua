@@ -97,7 +97,7 @@ local function init()
   }
 
   -- color schemes
-  use {"ellisonleao/gruvbox.nvim"}
+  use {"sainnhe/gruvbox-material"}
 
   use 'simrat39/symbols-outline.nvim'
   

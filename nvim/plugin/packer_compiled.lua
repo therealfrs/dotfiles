@@ -137,11 +137,6 @@ _G.packer_plugins = {
     path = "/home/frs/.local/share/nvim/site/pack/packer/opt/goyo.vim",
     url = "https://github.com/junegunn/goyo.vim"
   },
-  ["gruvbox.nvim"] = {
-    loaded = true,
-    path = "/home/frs/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
-    url = "https://github.com/ellisonleao/gruvbox.nvim"
-  },
   ["lightline.vim"] = {
     config = { "require('config.lightline')" },
     loaded = true,
