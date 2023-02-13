@@ -9,8 +9,8 @@ function config#wilder()
        \   wilder#branch(
        \     wilder#python_file_finder_pipeline({
        \       'path': {_, path -> getcwd()},
-       \       'file_command': {_, arg -> stridx(arg, '.') != -1 ? ['fdfind', '-tf','-I', '-H'] : ['fd', '-tf', '-I']},
-       \       'dir_command': ['fd', '-td', '-I'],
+       \       'file_command': {_, arg -> stridx(arg, '.') != -1 ? ['fdfind', '-tf','-I', '-H'] : ['fdfind', '-tf', '-I']},
+       \       'dir_command': ['fdfind', '-td', '-I'],
        \       'filters': ['cpsm_filter'],
        \     }),
        \     wilder#substitute_pipeline({
