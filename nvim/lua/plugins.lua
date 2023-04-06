@@ -118,6 +118,7 @@ local function init()
   use '~/.fzf'
   use 'junegunn/fzf.vim'
 
+  use 'gauteh/vim-cppman'
 
   use {
     'mhinz/vim-signify',

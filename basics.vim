@@ -74,8 +74,8 @@ set shortmess+=c
 
 set colorcolumn=80
 
-set grepprg=rg\ -L\ --vimgrep
-set grepformat^=%f:%l:%c:%m
+set grepprg=rg\ -L\ --vimgrep\ --no-heading\ --smart-case
+set grepformat=%f:%l:%c:%m,%f:%l:%m
 
 augroup AutoCursorLine
   " Turn on cursorline only on active window

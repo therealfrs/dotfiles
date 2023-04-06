@@ -22,8 +22,6 @@ local function init()
     ]],
   }
 
-
-
   use {
     'nvim-telescope/telescope.nvim',
     requires = { 
