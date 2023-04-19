@@ -116,7 +116,10 @@ local function init()
 
   -- install cppman first using
   -- `pip install cppman`
-  use {'gauteh/vim-cppman' }
+  use {'gauteh/vim-cppman'}
+
+  -- need ctags for this to work
+  use {'ludovicchabant/vim-gutentags'}
 
   use {
     'mhinz/vim-signify',
