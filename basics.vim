@@ -73,6 +73,8 @@ set updatetime=50
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
+set pumheight=20
+
 set colorcolumn=80
 
 set grepprg=rg\ -L\ --vimgrep\ --no-heading\ --smart-case
