@@ -26,7 +26,8 @@ set smarttab
 " set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
 
-set tags=./tags,./.tags
+set tags=./.tags;$HOME
+
 " Indenting 
 set autoindent
 set smartindent
