@@ -11,12 +11,12 @@ local function init()
 
   use 'wbthomason/packer.nvim'
 
-  use { 'itchyny/lightline.vim', config = [[require('config.lightline')]] }
+  use { 'itchyny/lightline.vim' }
 
   use {
     'tpope/vim-commentary',
-    config = [[
-      local map = require('config.utils').map
+   config = [[
+      local map = require('utils').map
       map('n', '\\\\', 'gcc', {noremap = false})
       map('v', '\\\\', 'gcc', {noremap = false})
     ]],
@@ -29,7 +29,6 @@ local function init()
       { 'nvim-lua/plenary.nvim' }, 
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     },
-    config = [[require('config.telescope')]],
   }
 
   -- Treesitter
@@ -42,37 +41,30 @@ local function init()
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     run = ':TSUpdate',
-    config = [[require('config.treesitter')]],
   }
   use { 'nvim-treesitter/nvim-treesitter-context' }
 
 
   -- LSP
   use {'kabouzeid/nvim-lspinstall' }
-  use { 'neovim/nvim-lspconfig', config = [[require('config.lsp')]] }
+  use { 'neovim/nvim-lspconfig' }
   use {
     'folke/trouble.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('trouble').setup {}
-    end,
   }
 
   use {
       "folke/which-key.nvim",
-      config = [[require('config.keymap')]],
   }
 
   -- Completion
   use {
     'hrsh7th/vim-vsnip',
-    config = [[require('config.vsnip')]],
     event = 'InsertEnter *',
   }
   use { 'hrsh7th/vim-vsnip-integ' }
   use {
     'hrsh7th/nvim-cmp',
-    config = [[require('config.cmp')]],
     requires = {
       'hrsh7th/cmp-omni',
       'hrsh7th/cmp-buffer',
@@ -88,9 +80,6 @@ local function init()
   -- Completion on :,/,etc.
   use {
     'gelguy/wilder.nvim',
-    config = function()
-      vim.api.nvim_exec([[call config#wilder()]], false)
-    end,
     requires = { 'romgrk/fzy-lua-native', 'nixprime/cpsm' },
   }
 
@@ -102,7 +91,6 @@ local function init()
   use { 
     'junegunn/fzf', 
     run = './install --bin', 
-    config = [[require('config.fzf')]],
   }
 
   -- code formatter
@@ -125,17 +113,7 @@ local function init()
     end,
   }
 
-  use {
-    'mhinz/vim-signify',
-    -- cmd = { 'SignifyToggle' },
-    -- config = function()
-    --   vim.g['signify_vcs_list'] = {'git'}
-    --   vim.g['signify_vcs_cmds'] = { ['git'] = 'git diff -r .^ --config defaults.diff= --nodates -U0 -- %f' }
-    --   vim.g['signify_realtime'] = 1
-    --   vim.g['signify_cursorhold_insert'] = 0
-    --   vim.g['signify_cursorhold_normal'] = 0
-    -- end,
-  }
+  use { 'mhinz/vim-signify' }
 
   _G.local_plugins(use)
 end

@@ -1,5 +1,5 @@
-local map = require('config.utils').map
-local vim = vim
+local map = require('utils').map
+
 vim.g.loaded_compe_treesitter = true
 vim.g.loaded_compe_snippets_nvim = true
 vim.g.loaded_compe_spell = true
@@ -8,8 +8,7 @@ vim.g.loaded_compe_ultisnips = true
 vim.g.loaded_compe_vim_lsc = true
 vim.g.loaded_compe_vim_lsp = true
 
-
-require('compe').setup {
+vim.g.compe = {
   enabled = true;
   autocomplete = true;
   debug = false;

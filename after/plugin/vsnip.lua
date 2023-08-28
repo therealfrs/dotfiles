@@ -22,7 +22,7 @@ xmap        s   <Plug>(vsnip-select-text)
 xmap        S   <Plug>(vsnip-cut-text)]]
 
 
-local map = require('config.utils').map
+local map = require('utils').map
 local opts = {noremap = false, expr = true}
 map('i', '<Tab>', [[vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>']], opts)
 map('s', '<Tab>', [[vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>']], opts)
