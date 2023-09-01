@@ -106,13 +106,6 @@ local function init()
   -- `pip install cppman`
   use {'gauteh/vim-cppman'}
 
-  -- need ctags for this to work
-  use {'ludovicchabant/vim-gutentags',
-    config = function()
-      vim.g['gutentags_ctags_tagfile'] = '.tags'
-    end,
-  }
-
   use { 'mhinz/vim-signify' }
 
   _G.local_plugins(use)
