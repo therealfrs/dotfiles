@@ -93,15 +93,6 @@ local function init()
     run = './install --bin', 
   }
 
-  -- code formatter
-  use {
-    'google/vim-codefmt',
-    requires = {
-      'google/maktaba',
-      'google/glaive',
-    }
-  }
-
   -- install cppman first using
   -- `pip install cppman`
   use {'gauteh/vim-cppman'}
