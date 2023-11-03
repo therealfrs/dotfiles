@@ -11,7 +11,7 @@ configs.clangd = {
 }
 
 
-nvim_lsp.pyright.setup{ }
+nvim_lsp.pylsp.setup{ }
 
 nvim_lsp.gopls.setup{}
 
