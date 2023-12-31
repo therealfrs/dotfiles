@@ -122,7 +122,7 @@ endfunction
 if !empty(glob("BUILD.gn"))
   set makeprg=ninja\ -C\ 
   " TODO(feras): fix relative path errors when building from non root dir.
-  set errorformat=%*[\./\]%f:%l:%c:\ error:\ %m,%-G%.%#
+  set errorformat+=%*[\./\]%f:%l:%c:\ error:\ %m,%-G%.%#
 endif
 
 autocmd BufWritePre *.h,*.cc,*.cpp call FormatOnSave()
