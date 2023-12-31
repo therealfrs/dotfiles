@@ -28,7 +28,7 @@ let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
 
 set tags=./.tags;$HOME
 
-" Indenting 
+" Indenting
 set autoindent
 set smartindent
 
@@ -44,7 +44,8 @@ set titlelen=95
 " the cursorline is useful when working with multiple windows: it will highlight the current line in an inactive window
 set cursorline
 
-set guicursor=
+set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
+set guifont=Iosevka\ Fixed\ Medium:h18
 set nohlsearch
 set hidden
 set noerrorbells
