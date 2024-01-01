@@ -39,3 +39,18 @@ vim.cmd [[
 			au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
 	augroup END
 ]]
+
+-- defines makeprg as ninja if there is a BUIlD.gn in current directory
+function set_ninja_make()
+  local cwd = vim.fn.getcwd()
+  if vim.fn.filereadable(vim.fn.glob(cwd .. "/BUILD.gn"))
+  then
+    vim.o.makeprg = 'autoninja -C '
+    -- vim.api.nvim_buf_set_option(0, 'makeprg', 'autoninja -C ')
+    local efm = vim.api.nvim_buf_get_option(0, 'errorformat')
+    efm = "%*[./]%f:%l:%c: error: %m,%-G%.%#" .. efm
+    vim.o.errorformat = efm
+    -- vim.api.nvim_buf_set_option(0, 'errorformat', efm)
+  end
+end
+set_ninja_make()

@@ -119,11 +119,4 @@ function! FormatOnSave()
   pyf $HOME/.config/nvim/clang_format.py
 endfunction
 
-" Simple heuristic to switch makeprg to ninja based on current direcotry.
-if !empty(glob("BUILD.gn"))
-  set makeprg=ninja\ -C\ 
-  " TODO(feras): fix relative path errors when building from non root dir.
-  set errorformat+=%*[\./\]%f:%l:%c:\ error:\ %m,%-G%.%#
-endif
-
 autocmd BufWritePre *.h,*.cc,*.cpp call FormatOnSave()
