@@ -16,7 +16,6 @@ map('n', 'Y', 'y$', {noremap = true})
 map('v', 'Y', 'ygv<Esc>', {noremap = true})
 
 vim.o.background = "dark"
-vim.cmd[[ colorscheme gruvbox-material ]]
 
 -- Placeholder to be customised by local configs.
 function _G.local_plugins(use) end

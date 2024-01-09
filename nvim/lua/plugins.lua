@@ -85,6 +85,10 @@ local function init()
 
   -- color schemes
   use {"sainnhe/gruvbox-material"}
+  use {
+      "phha/zenburn.nvim",
+      config = function() require("zenburn").setup() end
+  }
 
   use 'simrat39/symbols-outline.nvim'
   
