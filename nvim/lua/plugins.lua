@@ -86,8 +86,14 @@ local function init()
   -- color schemes
   use {"sainnhe/gruvbox-material"}
   use {
-      "phha/zenburn.nvim",
-      config = function() require("zenburn").setup() end
+    "phha/zenburn.nvim",
+    config = function() 
+      require("zenburn").setup() 
+      -- Hide all semantic highlights
+      for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+        vim.api.nvim_set_hl(0, group, {})
+      end
+    end
   }
 
   use 'simrat39/symbols-outline.nvim'
