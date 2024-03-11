@@ -126,7 +126,6 @@ local keymap_space = {
   -- h = {'<cmd>lua vim.lsp.buf.hover()<CR>'},
   -- r = {'<cmd>lua vim.lsp.buf.rename()<CR>'},
   -- ca = {'<cmd>lua vim.lsp.buf.code_action()<CR>'},
-  -- e = {'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>'}
   b = {
     name = 'debug',
     c = { '<Cmd>:lua require"dap".continue()<CR>', 'continue (dap)' },
@@ -158,6 +157,7 @@ local keymap_g = {
   i = { '<Cmd>Telescope lsp_implementation<CR>', 'LSP implementation' },
   r = {'<Cmd>Telescope lsp_references<CR>', 'LSP references'},
   s = { '<Cmd>call swap#prerequisite("n")<CR>g@l', 'swap interactive' },
+  e = {'<Cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostic error'},
 }
 wk.register(keymap_g, { prefix = 'g' })
 
