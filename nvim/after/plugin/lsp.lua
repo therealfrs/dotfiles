@@ -17,7 +17,6 @@ nvim_lsp.gopls.setup{}
 
 nvim_lsp.clangd.setup{
   on_attach = function(client, bufnr)
-    client.server_capabilities.semanticTokensProvider = nil
     local opts = { noremap = true, silent = true }
     require('lspconfig').clangd.setup {
       handlers = {

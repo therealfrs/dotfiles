@@ -110,8 +110,9 @@ augroup filetype
         au! BufRead,BufNewFile *.gypi   set filetype=python expandtab tabstop=2 shiftwidth=2
         au! BufRead,BufNewFile DEPS     set filetype=python expandtab tabstop=2 shiftwidth=2
         au! BufRead,BufNewFile cl_description* set filetype=gitcommit tw=72 colorcolumn=73
-        au! BufNewFile,BufRead *.star set syntax=python
-        au! BufNewFile,BufRead *.gn set syntax=python
+        au! BufNewFile,BufRead *.star set filetype=python
+        au! BufNewFile,BufRead *.gn set filetype=python
+        au! BufNewFile,BufRead *.mojom set filetype=c
 augroup END
 
 function! FormatOnSave()
