@@ -18,8 +18,9 @@ ts_configs.setup {
     }
   },
   refactor = {
-    smart_rename = {enable = true, keymaps = {smart_rename = "grr"}},
-    highlight_definitions = {enable = true},
+    enable = false,
+    smart_rename = {enable = false, keymaps = {smart_rename = "grr"}},
+    highlight_definitions = {enable = false},
     -- highlight_current_scope = { enable = true }
   },
   textobjects = {
