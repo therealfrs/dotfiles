@@ -25,149 +25,102 @@ wk.setup {
 -- local find_files_cmd = { "rg", "-i", "--files", "-g", "!.git"}
 
 local keymap_comma = {
-  name = 'comma',
-  r = {
+  { ",", group = "comma" },
+  { ",r", 
     function()
       require('telescope.builtin').oldfiles { }
     end,
-    'recent files',
+    desc = 'recent files',
   },
-  p = {
+  { ",p",
     function()
       require('telescope.builtin').git_status {
         -- find_command = { 'git', 'status', '-s'},
       }
     end,
-    'changed files',
+    desc = 'changed files',
   },
-  f = { 
-  function()
+  { ",f",
+    function()
       require('telescope.builtin').find_files {
-          -- find_command = find_files_cmd,
+        -- find_command = find_files_cmd,
       }
-  end,
-  'common files'
+    end,
+    desc = 'common files'
   },
-  d = { 
-      function()
-        require('telescope.builtin').find_files {
-          cwd = '%:h',
-        }
-      end,
-    'files in dir'
+  { ",d",
+    function()
+      require('telescope.builtin').find_files {
+        cwd = '%:h',
+      }
+    end,
+    desc = 'files in dir'
   },
-  b = {
+  { ",b",
     function()
       require('telescope.builtin').buffers { }
     end,
-    'buffers',
+    desc = 'buffers',
   },
-  g = { 
-      function()
-          require('telescope.builtin').live_grep {
-              -- cwd = '%:h',
-          }
-      end,
-      'live grep'
+  { ",g",
+    function()
+      require('telescope.builtin').live_grep {
+        -- cwd = '%:h',
+      }
+    end,
+    desc = 'live grep'
   },
-  w = { 
-      function()
-          require('telescope.builtin').grep_string {
-            search = vim.fn.expand("<cword>"),
-          }
-      end,
-      'live grep'
+  { ",w",
+    function()
+      require('telescope.builtin').grep_string {
+        search = vim.fn.expand("<cword>"),
+      }
+    end,
+    desc = 'live grep'
   },
-  q = { 
-      function()
-          require('telescope.builtin').quickfix {
-          }
-      end,
-      'quick fix'
+  { ",q",
+    function()
+      require('telescope.builtin').quickfix {
+      }
+    end,
+    desc = 'quick fix'
   },
-  j = {
-      function()
-          require('telescope.builtin').jumplist {
-          }
-      end,
-      'jump list'
+  { ",j",
+    function()
+      require('telescope.builtin').jumplist {
+      }
+    end,
+    desc = 'jump list'
   },
-
-  s = {
-      function()
-          require('telescope.builtin').treesitter {
-          }
-      end,
-      'Symbols'
-  },
-}
-wk.register(keymap_comma, { prefix = ',' })
-
-local keymap_s = {
-  name = 'window',
-  p = { '<Cmd>lua require"windows".split_nicely()<CR>', 'split (smart)' },
-  c = { '<Cmd>lua require"windows".smart_close()<CR>', 'close' },
-  h = { '<Cmd>split<CR>', 'split horizontal' },
-  v = { '<Cmd>vsplit<CR>', 'split vertical' },
-  o = { ':<C-u>only<CR>', 'only' },
-  s = { '<Cmd>ChooseWin<CR>', 'pick window' },
-}
-wk.register(keymap_s, { prefix = 's' })
-
-local keymap_space = {
-  name = 'space',
-  wa = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>' },
-  wr = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>' },
-  wl = {
-    '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-  },
-  D = { '<cmd>lua vim.lsp.buf.type_definition()<CR>' },
-  -- K = {'<cmd>lua vim.lsp.buf.signature_help()<CR>'},
-  -- h = {'<cmd>lua vim.lsp.buf.hover()<CR>'},
-  -- r = {'<cmd>lua vim.lsp.buf.rename()<CR>'},
-  -- ca = {'<cmd>lua vim.lsp.buf.code_action()<CR>'},
-  b = {
-    name = 'debug',
-    c = { '<Cmd>:lua require"dap".continue()<CR>', 'continue (dap)' },
-    s = { '<Cmd>:lua require"dap".step_over()<CR>', 'step over(dap)' },
-    i = { '<Cmd>:lua require"dap".step_into()<CR>', 'step into (dap)' },
-    o = { '<Cmd>:lua require"dap".step_out()<CR>', 'step out (dap)' },
-    b = {
-      '<Cmd>:lua require"dap".toggle_breakpoint()<CR>',
-      'toggle breakpoint (dap)',
-    },
-    B = {
-      '<Cmd>:lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',
-      'toggle breakpoint',
-    },
-    l = {
-      '<Cmd>:lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',
-      'toggle logpoint',
-    },
-    R = { '<Cmd>:lua require"dap".repl.open()<CR>', 'REPL open' },
-    r = { '<Cmd>:lua require"dap".run_last()<CR>', 'run last (dap)' },
+  { ",s",
+    function()
+      require('telescope.builtin').treesitter {
+      }
+    end,
+    desc = 'symbols'
   },
 }
-wk.register(keymap_space, { prefix = '<space>' })
+wk.add(keymap_comma)
 
 local keymap_g = {
-  name = 'go',
-  d = { '<Cmd>Telescope lsp_definitions <CR>', 'LSP definitions' },
-  D = { '<Cmd>lua vim.lsp.buf.definition()<CR>', 'LSP definition' },
-  i = { '<Cmd>Telescope lsp_implementation<CR>', 'LSP implementation' },
-  r = {'<Cmd>Telescope lsp_references<CR>', 'LSP references'},
-  s = { '<Cmd>call swap#prerequisite("n")<CR>g@l', 'swap interactive' },
-  e = {'<Cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostic error'},
+  { "g", group = "go" },
+  { "gD", "<Cmd>lua vim.lsp.buf.definition()<CR>", desc = "LSP definition" },
+  { "gd", "<Cmd>Telescope lsp_definitions <CR>", desc = "LSP definitions" },
+  { "ge", "<Cmd>lua vim.diagnostic.open_float()<CR>", desc = "Diagnostic error" },
+  { "gi", "<Cmd>Telescope lsp_implementation<CR>", desc = "LSP implementation" },
+  { "gr", "<Cmd>Telescope lsp_references<CR>", desc = "LSP references" },
+  { "gs", '<Cmd>call swap#prerequisite("n")<CR>g@l', desc = "swap interactive" },
 }
-wk.register(keymap_g, { prefix = 'g' })
+wk.add(keymap_g)
 
 local keymap_Q = {
-  n = { '<cmd>cnext<CR>', 'cnext' },
-  p = { '<cmd>cprevious<CR>', 'cprev' },
-  o = { '<cmd>:botright cwindow<CR>', 'cwindow' },
-  c = { '<cmd>:cclose<CR>', 'cclose' },
+  {"Q", group = "Q"},
+  { "Qc", "<cmd>:cclose<CR>", desc = "cclose" },
+  { "Qn", "<cmd>cnext<CR>", desc = "cnext" },
+  { "Qo", "<cmd>:botright cwindow<CR>", desc = "cwindow" },
+  { "Qp", "<cmd>cprevious<CR>", desc = "cprev" },
 }
-wk.register(keymap_Q, { prefix = 'Q' })
+wk.add(keymap_Q)
 
 vim.api.nvim_set_keymap('n', '<C-p>', ":FZF<CR>", {noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', ',g', "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>", {noremap = true, silent = true })

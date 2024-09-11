@@ -54,7 +54,8 @@ local function init()
   }
 
   use {
-      "folke/which-key.nvim",
+    "folke/which-key.nvim",
+    requires = 'echasnovski/mini.icons',
   }
 
   -- Completion
