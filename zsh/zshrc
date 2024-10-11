@@ -1,0 +1,63 @@
+ZSH=$HOME/git/ohmyzsh
+ZSH_THEME="eastwood"
+
+plugins=(
+	git
+	z
+	fzf
+)
+
+# path to fzf
+export FZF_BASE=~/.fzf
+export FZF_DEFAULT_OPTS="--color=light"
+
+source $ZSH/oh-my-zsh.sh
+
+# Fuzzy search
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# don't paginate if less than a page
+export LESS="-F -X $LESS"
+
+# disable warning when opening gvim
+export NO_AT_BRIDGE=1
+
+# Chromium tools
+export PATH=$HOME/git/depot_tools:$PATH
+
+# Print ninja build summaries.
+export NINJA_SUMMARIZE_BUILD=0
+export NINJA_STATUS="[%r processes, %f/%t @ %o/s : %es ]"
+
+# home brew for Mac
+export PATH=$PATH:/opt/homebrew/bin
+
+# pyright location
+export PATH=$PATH:$HOME/.local/bin
+
+# skip gce for cloudtop
+export SKIP_GCE_AUTH_FOR_GIT=1
+
+umask 022
+
+compdef tmx2 tmux
+
+bindkey -e
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
+
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR=nvim
+else
+  export EDITOR=nvim-qt
+fi
+
+alias vim=$EDITOR
+alias e=$EDITOR
+
+alias notes="$EDITOR +'colorscheme plain' +'set background=light'"
+
+alias grep='rg --color=always'
+
+# Google specific configurations
+source $HOME/.zshrc_google

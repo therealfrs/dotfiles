@@ -17,3 +17,9 @@ if [ "$1" = "nvim" ]; then
     nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 	fi
 fi
+
+
+if [ "$1" = "zsh" ]; then
+  echo "Copying zshrc file to $HOOME/.zshrc"
+  cp zsh/zshrc $HOME/.zshrc
+fi
