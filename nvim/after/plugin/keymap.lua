@@ -166,7 +166,7 @@ autocmd BufReadPost quickfix map <buffer> <Space> <CR>z.<C-W>w
 " :w!! writes to a file using sudo if you forgot to "sudo vim file"
 cmap w!! %!sudo tee > /dev/null %
 
-map <Leader>v :e ~/.config/nvim/init.vim<CR>
+map <Leader>v :e ~/.config/nvim/init.lua<CR>
 
 " Movement {{{2
 map <C-Down> <C-d>
