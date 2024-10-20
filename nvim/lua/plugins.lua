@@ -11,16 +11,7 @@ local function init()
 
   use 'wbthomason/packer.nvim'
 
-  use { 'itchyny/lightline.vim' }
-
-  use {
-    'tpope/vim-commentary',
-   config = [[
-      local map = require('utils').map
-      map('n', '\\\\', 'gcc', {noremap = false})
-      map('v', '\\\\', 'gcc', {noremap = false})
-    ]],
-  }
+  use 'itchyny/lightline.vim'
 
   use {
     'nvim-telescope/telescope.nvim',
@@ -31,39 +22,17 @@ local function init()
     },
   }
 
-  -- Treesitter
-  use { 'nvim-treesitter/playground', cmd = { 'TSPlayground' } }
-
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    requires = {
-      'nvim-treesitter/nvim-treesitter-refactor',
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    run = ':TSUpdate',
-  }
-  use { 'nvim-treesitter/nvim-treesitter-context' }
-
-
   -- LSP
   use {'kabouzeid/nvim-lspinstall' }
   use { 'neovim/nvim-lspconfig' }
-  use {
-    'folke/trouble.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-  }
 
+  -- Smart key mapping
   use {
     "folke/which-key.nvim",
     requires = 'echasnovski/mini.icons',
   }
 
   -- Completion
-  use {
-    'hrsh7th/vim-vsnip',
-    event = 'InsertEnter *',
-  }
-  use { 'hrsh7th/vim-vsnip-integ' }
   use {
     'hrsh7th/nvim-cmp',
     requires = {
@@ -78,14 +47,7 @@ local function init()
     },
   }
 
-  -- Completion on :,/,etc.
-  use {
-    'gelguy/wilder.nvim',
-    requires = { 'romgrk/fzy-lua-native', 'nixprime/cpsm' },
-  }
-
-  -- color schemes
-  use {"sainnhe/gruvbox-material"}
+  -- colorscheme
   use {
     "phha/zenburn.nvim",
     config = function() 
@@ -93,16 +55,10 @@ local function init()
     end
   }
 
-  use 'simrat39/symbols-outline.nvim'
-  
   use { 
     'junegunn/fzf', 
     run = './install --bin', 
   }
-
-  -- install cppman first using
-  -- `pip install cppman`
-  use {'gauteh/vim-cppman'}
 
   use { 'mhinz/vim-signify' }
 

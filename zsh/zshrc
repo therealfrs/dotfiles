@@ -60,4 +60,6 @@ alias notes="$EDITOR +'colorscheme plain' +'set background=light'"
 alias grep='rg --color=always'
 
 # Google specific configurations
-source $HOME/.zshrc_google
+if [ -f $HOME/.zshrc_google ]; then
+  source $HOME/.zshrc_google
+fi
