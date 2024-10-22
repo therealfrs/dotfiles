@@ -2,7 +2,10 @@ local cmp = require'cmp'
 cmp.setup({
   experimental = {
       native_menu = false,
-      ghost_text = true,
+      ghost_text = false,
+  },
+  completion = {
+    autocomplete = false,
   },
   mapping = {
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
@@ -18,11 +21,9 @@ cmp.setup({
   sources = {
     { name = 'omni' },
     { name = 'nvim_lsp' },
-    { name = 'vsnip' },
     { name = 'nvim_lua' },
     { name = 'treesitter' },
     { name = 'path' },
-    { name = 'tmux' },
     { name = 'buffer' },
   },
 })
