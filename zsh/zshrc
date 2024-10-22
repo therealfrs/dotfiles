@@ -9,7 +9,7 @@ plugins=(
 
 # path to fzf
 export FZF_BASE=~/.fzf
-export FZF_DEFAULT_OPTS="--color=light"
+export FZF_DEFAULT_OPTS=""
 
 source $ZSH/oh-my-zsh.sh
 
