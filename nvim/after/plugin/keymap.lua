@@ -92,13 +92,6 @@ local keymap_comma = {
     end,
     desc = 'jump list'
   },
-  { ",s",
-    function()
-      require('telescope.builtin').treesitter {
-      }
-    end,
-    desc = 'symbols'
-  },
 }
 wk.add(keymap_comma)
 

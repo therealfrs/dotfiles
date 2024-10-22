@@ -22,7 +22,6 @@ cmp.setup({
     { name = 'omni' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
-    { name = 'treesitter' },
     { name = 'path' },
     { name = 'buffer' },
   },
