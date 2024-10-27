@@ -122,6 +122,17 @@ vim.api.nvim_set_keymap('n', '<C-c>', '<ESC>', {noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<C-c>', '<ESC>', {noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-c>', '<ESC>', {noremap = true, silent = true })
 
+toggle_read_mode = function()
+  vim.g.reading_mode = not vim.g.reading_mode
+  if vim.g.reading_mode then
+    vim.cmd.colorscheme('vscode')
+  else
+    vim.cmd.colorscheme('zenburn')
+  end
+end
+
+vim.api.nvim_set_keymap('n', '<leader>r', '<cmd>lua toggle_read_mode()<CR>', {noremap = true, silent = true})
+
 curr_buffer_keymap = function()
   local builtin = require("telescope.builtin")
   local themes = require("telescope.themes")

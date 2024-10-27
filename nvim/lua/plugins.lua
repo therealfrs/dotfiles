@@ -11,7 +11,7 @@ local function init()
 
   use 'wbthomason/packer.nvim'
 
-  use 'itchyny/lightline.vim'
+  use 'nvim-lualine/lualine.nvim'
 
   use {
     'nvim-telescope/telescope.nvim',
@@ -44,13 +44,9 @@ local function init()
     },
   }
 
-  -- colorscheme
-  use {
-    "phha/zenburn.nvim",
-    config = function() 
-      require("zenburn").setup() 
-    end
-  }
+  -- colorschemes
+  use "phha/zenburn.nvim"
+  use 'Mofiqul/vscode.nvim'
 
   use { 
     'junegunn/fzf', 
