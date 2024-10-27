@@ -123,6 +123,8 @@ vim.api.nvim_set_keymap('v', '<C-c>', '<ESC>', {noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-c>', '<ESC>', {noremap = true, silent = true })
 
 toggle_read_mode = function()
+  vim.cmd.hi('clear')
+
   vim.g.reading_mode = not vim.g.reading_mode
   if vim.g.reading_mode then
     vim.cmd.colorscheme('vscode')
