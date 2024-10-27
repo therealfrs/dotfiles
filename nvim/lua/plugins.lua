@@ -53,7 +53,7 @@ local function init()
     run = './install --bin', 
   }
 
-  use { 'mhinz/vim-signify' }
+  use 'lewis6991/gitsigns.nvim'
 
   _G.local_plugins(use)
 end
