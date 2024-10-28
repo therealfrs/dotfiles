@@ -46,6 +46,9 @@ bindkey -e
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word
 
+# faster key repeat
+xset r rate 300 30
+
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR=nvim
 else
