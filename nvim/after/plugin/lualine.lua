@@ -33,7 +33,7 @@ local bubbles_theme = {
 
 require('lualine').setup {
   options = {
-    theme = 'auto',
+    theme = 'codedark',
     component_separators = '',
   },
   sections = {
