@@ -1,0 +1,38 @@
+[http]
+	cookiefile = /usr/local/google/home/frs/.gitcookies
+[credential]
+	helper = corpsso
+[alias]
+  co = checkout
+  br = branch
+  rb = rebase 
+  lg = log --oneline 
+  st = status
+[user]
+	name = Feras Aldahlawi
+	email = feras@chromium.org
+[pull]
+	rebase = true
+[oh-my-zsh]
+	hide-status = 1
+	hide-dirty = 1
+[advice]
+	skippedCherryPicks = false
+[merge]
+	tool = meld
+[diff]
+  tool = meld
+[difftool]
+  prompt = false
+ [difftool "meld"]
+     cmd = meld "$LOCAL" "$REMOTE"
+[core]
+  editor = nvim
+	filemode = false
+	autocrlf = false
+[rerere]
+	enabled = true
+[branch]
+	autosetuprebase = always
+[cache]
+	cachepath = /usr/local/google/big-files/git_cache_path
