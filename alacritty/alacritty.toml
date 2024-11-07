@@ -1,0 +1,8 @@
+# Font configuration
+[font]
+normal = { family = "Iosevka Term", style = "Light" }
+size = 16
+
+[window]
+decorations = "None"
+dimensions = { columns = 120, lines = 50}
