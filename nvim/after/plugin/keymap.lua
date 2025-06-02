@@ -129,7 +129,7 @@ toggle_read_mode = function()
   if vim.g.reading_mode then
     vim.cmd.colorscheme('vscode')
   else
-    vim.cmd.colorscheme('zenburn')
+    vim.cmd.colorscheme('kanagawa')
   end
 end
 

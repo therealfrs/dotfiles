@@ -46,6 +46,7 @@ local function init()
 
   -- colorschemes
   use "phha/zenburn.nvim"
+  use "rebelot/kanagawa.nvim"
   use 'Mofiqul/vscode.nvim'
 
   use { 
