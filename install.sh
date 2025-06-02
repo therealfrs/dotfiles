@@ -14,7 +14,7 @@ if [ "$1" = "nvim" ]; then
     fi
 	  cp -R ./nvim $HOME/.config/nvim
     echo "Running Packer to install nvim packages..."
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+    # nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 	fi
 fi
 

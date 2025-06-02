@@ -1,6 +1,5 @@
 -- " vim: set fdm=marker fenc=utf-8 sw=2 ts=2:
 
-
 local which_key_map = {}
 local after_load = {}
 local map = vim.api.nvim_set_keymap
@@ -18,15 +17,13 @@ map('v', 'Y', 'ygv<Esc>', {noremap = true})
 vim.o.background = "dark"
 
 -- Placeholder to be customised by local configs.
-function _G.local_plugins(use) end
+-- function _G.local_plugins(use) end
 -- vim.s.local_init=expand("~/.config/nvim/") . join(split(hostname(), '\.')[0:1],".") . ".vim"
 
 vim.o.mouse = "a"
 
-require('plugins')
-
-local home_dir = os.getenv("HOME")
-package.path = home_dir .. "/.config/nvim/after/plugin/?.lua;" .. package.path
+-- local home_dir = os.getenv("HOME")
+-- package.path = home_dir .. "/.config/nvim/after/plugin/?.lua;" .. package.path
 
 -- for key in keys(g:after_load)
 -- call vim.g:after_load[key]()
@@ -59,3 +56,5 @@ set_ninja_make()
 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
         vim.api.nvim_set_hl(0, group, {})
 end
+
+require('config.lazy')

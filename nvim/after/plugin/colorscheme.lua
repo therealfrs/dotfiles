@@ -1,7 +1,7 @@
-local zenburn = require'kanagawa'
+local kanagawa = require'kanagawa'
 local vscode = require'vscode'
 
-zenburn.setup({}) 
+kanagawa.setup({}) 
 vscode.setup({style='light'}) 
 
 vim.cmd.colorscheme('kanagawa')
