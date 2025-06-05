@@ -25,7 +25,34 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
     -- import your plugins
-    {'nvim-lualine/lualine.nvim'},
+    {
+      'nvim-lualine/lualine.nvim',
+      config = function()
+        local lualine = require('lualine')
+        lualine.setup{
+          options = {
+            theme = 'codedark',
+            component_separators = '',
+          },
+          sections = {
+            lualine_a = {
+              {
+                'filename',
+                path = 3,
+              },
+            },
+            lualine_b = {},
+            lualine_c = {},
+
+            lualine_x = {},
+            lualine_y = {'filetype'},
+            lualine_z = { 'location'},
+          },
+          tabline = {},
+          extensions = {},
+        }
+      end
+    },
 
     {
       'nvim-telescope/telescope.nvim',
