@@ -49,13 +49,39 @@ require("lazy").setup({
     -- Completion
     {
       'hrsh7th/nvim-cmp',
-      requires = {
+      dependencies = {
         'hrsh7th/cmp-omni',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lua',
       },
+      opts = function(_, opts)
+        local cmp = require("cmp")
+        opts.experimental = {
+          native_menu = false,
+          ghost_text = false,
+        }
+        opts.completion = { autocomplete = false }
+        opts.mapping = cmp.mapping({
+          ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+          ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+          ['<C-p>'] = cmp.mapping.select_prev_item(),
+          ['<C-n>'] = cmp.mapping.select_next_item(),
+          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.close(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        })
+        opts.sources = {
+          { name = 'omni' },
+          { name = 'nvim_lsp' },
+          { name = 'nvim_lua' },
+          { name = 'path' },
+          { name = 'buffer' },
+        }
+      end,
     },
 
     -- colorschemes
