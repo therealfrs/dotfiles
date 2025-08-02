@@ -1,6 +1,6 @@
 # Font configuration
 [font]
-normal = { family = "Iosevka Term", style = "Light" }
+normal = { family = "Google Sans Code", style = "Light" }
 size = 16
 
 [window]
