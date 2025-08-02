@@ -12,6 +12,7 @@ export FZF_BASE=~/.fzf
 export FZF_DEFAULT_OPTS=""
 
 source $ZSH/oh-my-zsh.sh
+PROMPT='%{$fg[cyan]%}[%~% ]%{$reset_color%}%B$%b '
 
 # Fuzzy search
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
