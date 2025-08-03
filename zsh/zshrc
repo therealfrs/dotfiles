@@ -31,7 +31,9 @@ export NINJA_SUMMARIZE_BUILD=0
 export NINJA_STATUS="[%r processes, %f/%t @ %o/s : %es ]"
 
 # home brew for Mac
-export PATH=$PATH:/opt/homebrew/bin
+if [[ $(uname -s) == "Darwin" ]]; then
+  export PATH=/opt/homebrew/bin:$PATH
+fi
 
 # pyright location
 export PATH=$PATH:$HOME/.local/bin
