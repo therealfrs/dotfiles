@@ -45,7 +45,7 @@ set titlelen=95
 set cursorline
 
 set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
-set guifont=Iosevka\ Fixed\ Medium:h18
+set guifont=Google\ Sans\ Code:h18
 set nohlsearch
 set hidden
 set noerrorbells
