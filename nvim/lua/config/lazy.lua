@@ -27,12 +27,14 @@ require("lazy").setup({
     -- import your plugins
     {
       'nvim-lualine/lualine.nvim',
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
       config = function()
         local lualine = require('lualine')
         lualine.setup{
           options = {
             theme = 'codedark',
             component_separators = '',
+            section_separators = ''
           },
           sections = {
             lualine_a = {
@@ -46,7 +48,7 @@ require("lazy").setup({
 
             lualine_x = {},
             lualine_y = {'filetype'},
-            lualine_z = { 'location'},
+            lualine_z = {'location'},
           },
           tabline = {},
           extensions = {},
