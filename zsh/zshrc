@@ -74,7 +74,7 @@ fi
 alias vim=$EDITOR
 alias e=$EDITOR
 
-alias notes="$EDITOR +'colorscheme plain' +'set background=light'"
+alias notes="$EDITOR +'colorscheme vscode' +'set background=light'"
 
 alias grep='rg --color=always'
 
