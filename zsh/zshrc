@@ -24,7 +24,13 @@ export LESS="-F -X $LESS"
 export NO_AT_BRIDGE=1
 
 # Chromium tools
+if [ -d $HOME/git/depot_tools ]; then
 export PATH=$HOME/git/depot_tools:$PATH
+fi
+
+if [ -d $HOME/git/chromium/src ]; then
+export CHROMIUM_BUILDTOOLS_PATH=$HOME/git/chromium/src/buildtools
+fi
 
 # Print ninja build summaries.
 export NINJA_SUMMARIZE_BUILD=0
