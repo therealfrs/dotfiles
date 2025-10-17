@@ -57,6 +57,8 @@ vim.api.nvim_create_autocmd("QuickFixCmdPre", {
   end,
 })
 
+require('utils.ninja_build').setup({})
+
 
 -- disable lsp highlight
 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
