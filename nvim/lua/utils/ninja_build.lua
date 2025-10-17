@@ -70,6 +70,14 @@ end
 function M.setup()
   local group = vim.api.nvim_create_augroup("NinjaBuildQuickfix", { clear = true })
 
+  vim.api.nvim_create_autocmd("QuickFixCmdPre", {
+    pattern = "make",
+    group = group,
+    callback = function()
+      vim.bo.errorformat = "%E%f:%l:%c: error: %m,%-G%.%#"
+    end,
+  })
+
   vim.api.nvim_create_autocmd("QuickFixCmdPost", {
     pattern = "make",
     group = group,

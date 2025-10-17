@@ -36,33 +36,10 @@ vim.cmd [[
 	augroup END
 ]]
 
--- defines makeprg as ninja if there is a BUIlD.gn in current directory
-function set_ninja_make()
-  local cwd = vim.fn.getcwd()
-  if vim.fn.filereadable(vim.fn.glob(cwd .. "/BUILD.gn"))
-  then
-    vim.o.makeprg = "autoninja -C"
-  end
-end
-set_ninja_make()
-
-vim.api.nvim_create_augroup("NinjaMake", { clear = true })
-vim.api.nvim_create_autocmd("QuickFixCmdPre", {
-  pattern = "make",
-  group = "NinjaMake",
-  callback = function()
-    if vim.o.makeprg:find("autoninja") then
-      vim.bo.errorformat = "%E%f:%l:%c: error: %m,%-G%.%#"
-    end
-  end,
-})
-
-require('utils.ninja_build').setup({})
-
-
 -- disable lsp highlight
 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
         vim.api.nvim_set_hl(0, group, {})
 end
 
 require('config.lazy')
+require('utils.ninja_build').setup({})
