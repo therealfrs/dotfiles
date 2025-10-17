@@ -32,7 +32,7 @@ require("lazy").setup({
         local lualine = require('lualine')
         lualine.setup{
           options = {
-            theme = 'codedark',
+            theme = 'alabaster',
             component_separators = '',
             section_separators = ''
           },
@@ -163,6 +163,7 @@ require("lazy").setup({
     -- colorschemes
     { "rebelot/kanagawa.nvim" },
     { 'Mofiqul/vscode.nvim' },
+    { "p00f/alabaster.nvim" },
 
     { 
       'junegunn/fzf', 
@@ -174,7 +175,7 @@ require("lazy").setup({
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "kanagawa" } },
+  install = { colorscheme = { "alabaster" } },
   -- automatically check for plugin updates
   checker = { enabled = true, notify = false},
 })

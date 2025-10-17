@@ -4,5 +4,6 @@ local vscode = require'vscode'
 kanagawa.setup({}) 
 vscode.setup({style='light'}) 
 
-vim.cmd.colorscheme('kanagawa')
+vim.cmd.colorscheme('alabaster')
+vim.opt.background = 'light'
 vim.g.reading_mode = false
