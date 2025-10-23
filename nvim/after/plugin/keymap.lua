@@ -92,6 +92,12 @@ local keymap_comma = {
     end,
     desc = 'jump list'
   },
+  { ",h", 
+    function()
+      require('telescope.builtin').command_history { }
+    end,
+    desc = 'commnad history',
+  },
 }
 wk.add(keymap_comma)
 
