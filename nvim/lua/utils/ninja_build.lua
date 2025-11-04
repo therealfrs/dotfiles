@@ -47,7 +47,7 @@ local function fix_qf_paths()
   build_dir = nil
 
   -- Jump to first problem.
-  vim.cmd("cnext")
+  vim.cmd("cfirst")
 end
 
 function M.build(args)

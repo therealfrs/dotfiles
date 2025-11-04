@@ -78,7 +78,7 @@ set pumheight=20
 
 set colorcolumn=80
 
-set grepprg=rg\ -L\ --vimgrep\ --no-heading\ --smart-case
+set grepprg=rg\ -L\ --vimgrep\ --no-heading\ --smart-case\ --no-messages
 set grepformat=%f:%l:%c:%m,%f:%l:%m
 
 augroup AutoCursorLine
