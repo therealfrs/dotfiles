@@ -70,21 +70,22 @@ require("lazy").setup({
     { 
       'neovim/nvim-lspconfig',
       config = function()
-        local nvim_lsp = require('lspconfig')
         local configs = require('lspconfig.configs')
         configs.clangd = {
           default_config = {
             -- cmd = {'/google/bin/releases/cider/ciderlsp/ciderlsp', '--tooltag=nvim-lsp' , '--noforward_sync_responses'};
             cmd = {'/usr/bin/clangd', '--header-insertion=never'};
             filetypes = {'c', 'cpp', 'java', 'go', 'bzl'};
-            root_dir = nvim_lsp.util.root_pattern('compile_commands.json');
+            root_dir = function(fname)
+              return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+            end,
             settings = {};
           }
         }
 
-        nvim_lsp.pylsp.setup{ }
-        nvim_lsp.gopls.setup{}
-        nvim_lsp.taplo.setup{
+        vim.lsp.config('pylsp', {})
+        vim.lsp.config('gopls', {})
+        vim.lsp.config('taplo', {
           default_config = {
             cmd = { 'taplo', 'lsp', 'stdio' },
             filetypes = { 'toml' },
@@ -105,8 +106,8 @@ require("lazy").setup({
             ```
             ]],
           },
-        }
-        nvim_lsp.clangd.setup{
+        })
+        vim.lsp.config('clangd', {
           on_attach = function(client, bufnr)
             local opts = { noremap = true, silent = true }
             require('lspconfig').clangd.setup {
@@ -128,7 +129,7 @@ require("lazy").setup({
               init_options = { clangdFileStatus = true },
             }
           end,
-        }
+        })
       end,
     },
 
