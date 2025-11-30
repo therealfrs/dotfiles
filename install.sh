@@ -20,6 +20,11 @@ fi
 
 
 if [ "$1" = "zsh" ]; then
-  echo "Copying zshrc file to $HOOME/.zshrc"
+  echo "Copying zshrc file to $HOME/.zshrc"
   cp zsh/zshrc $HOME/.zshrc
+fi
+
+if [ "$1" = "jj" ]; then
+  echo "Copying jj/config.toml file to $HOME/.config/jj/"
+  cp jj/config.toml $HOME/.config/jj
 fi
