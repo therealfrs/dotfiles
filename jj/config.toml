@@ -1,0 +1,44 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Feras Aldahlawi"
+email = "frs@chromium.org"
+
+[ui]
+default-command = ["log"]
+editor = "nvim"
+
+# For users of jj-on-piper, this is enabled by default for *all* repos.
+# We want chrome's formatters, not google3's.
+[fix.tools.google3format]
+enabled = false
+
+# The source of truth for the following formatters is depot_tools' git_cl.py
+[fix.tools.gn-format]
+command = ["gn", "format", "--stdin"]
+patterns = [
+    "glob:'**/*.gn'",
+    "glob:'**/*.gni'",
+    "glob:'**/*.typemap'",
+]
+
+[fix.tools.py-format]
+command = ["$HOME/git/chromium/src/tools/jj/formatters/python.py", "$path"]
+patterns = ["glob:'**/*.py'"]
+
+[fix.tools.clang-format]
+command = ["$HOME/git/chromium/src/third_party/depot_tools/clang_format.py", "--assume-filename=$path"]
+patterns = [
+    "glob:'**/*.cc'",
+    "glob:'**/*.cpp'",
+    "glob:'**/*.h'",
+    "glob:'**/*.m'",
+    "glob:'**/*.mm'",
+    "glob:'**/*.proto'",
+    "glob:'**/*.js'",
+    "glob:'**/*.ts'",
+]
+
+[fix.tools.lucicfg-format]
+command = ["lucicfg", "fmt", "-stdio", "$path"]
+patterns = ["glob:'**/*.star'"]
