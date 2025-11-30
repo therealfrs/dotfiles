@@ -27,7 +27,7 @@ command = ["$HOME/git/chromium/src/tools/jj/formatters/python.py", "$path"]
 patterns = ["glob:'**/*.py'"]
 
 [fix.tools.clang-format]
-command = ["$HOME/git/chromium/src/third_party/depot_tools/clang_format.py", "--assume-filename=$path"]
+command = ["$HOME/.config/nvim/clang_format.py", "--assume-filename=$path"]
 patterns = [
     "glob:'**/*.cc'",
     "glob:'**/*.cpp'",
