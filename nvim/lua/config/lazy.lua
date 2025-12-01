@@ -70,22 +70,22 @@ require("lazy").setup({
     { 
       'neovim/nvim-lspconfig',
       config = function()
-        local configs = require('lspconfig.configs')
-        configs.clangd = {
-          default_config = {
-            -- cmd = {'/google/bin/releases/cider/ciderlsp/ciderlsp', '--tooltag=nvim-lsp' , '--noforward_sync_responses'};
-            cmd = {'/usr/bin/clangd', '--header-insertion=never'};
-            filetypes = {'c', 'cpp', 'java', 'go', 'bzl'};
-            root_dir = function(fname)
-              return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
-            end,
-            settings = {};
-          }
-        }
+        -- Use an on_attach function to only map the following keys
+        -- after the language server attaches to the buffer
+        local on_attach = function(client, bufnr)
+          -- Enable completion triggered by <c-x><c-o>
+          vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+        end
 
-        vim.lsp.config('pylsp', {})
-        vim.lsp.config('gopls', {})
-        vim.lsp.config('taplo', {
+        local lspconfig = require('lspconfig')
+
+        lspconfig.pylsp.setup({
+          on_attach = on_attach,
+        })
+        lspconfig.gopls.setup({
+          on_attach = on_attach,
+        })
+        lspconfig.taplo.setup({
           default_config = {
             cmd = { 'taplo', 'lsp', 'stdio' },
             filetypes = { 'toml' },
@@ -107,28 +107,30 @@ require("lazy").setup({
             ]],
           },
         })
-        vim.lsp.config('clangd', {
+        lspconfig.clangd.setup({
           on_attach = function(client, bufnr)
-            local opts = { noremap = true, silent = true }
-            require('lspconfig').clangd.setup {
-              handlers = {
-                ['textDocument/clangd.fileStatus'] = function(err, result, ctx, cfg)
-                  local buf = vim.fn.bufnr(vim.uri_to_fname(result.uri))
-                  if buf < 0 then return end
-                  local state = ''
-                  if result.state == 'idle' then
-                    state = '✓'
-                  elseif string.find(result.state, 'parsing include', 0, true) then
-                    state = '⟳'
-                  elseif string.find(result.state, 'queued', 0, true) then
-                    state = '…'
-                  end
-                  vim.b[buf].lsp_status = state
-                end
-              },
-              init_options = { clangdFileStatus = true },
-            }
+            on_attach(client, bufnr)
           end,
+          cmd = {'/usr/bin/clangd', '--header-insertion=never'},
+          filetypes = {'c', 'cpp', 'java', 'go', 'bzl'},
+          -- Define what files indicate the root of the project
+          root_dir = lspconfig.util.root_pattern('compile_commands.json', 'compile_flags.txt', '.git'),
+          handlers = {
+            ['textDocument/clangd.fileStatus'] = function(err, result, ctx, cfg)
+              local buf = vim.fn.bufnr(vim.uri_to_fname(result.uri))
+              if buf < 0 then return end
+              local state = ''
+              if result.state == 'idle' then
+                state = '✓'
+              elseif string.find(result.state, 'parsing include', 0, true) then
+                state = '⟳'
+              elseif string.find(result.state, 'queued', 0, true) then
+                state = '…'
+              end
+              vim.b[buf].lsp_status = state
+            end
+          },
+          init_options = { clangdFileStatus = true },
         })
       end,
     },
