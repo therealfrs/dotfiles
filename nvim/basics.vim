@@ -109,6 +109,7 @@ augroup filetype
         au! BufRead,BufNewFile *.gyp    set filetype=python expandtab tabstop=2 shiftwidth=2
         au! BufRead,BufNewFile *.gypi   set filetype=python expandtab tabstop=2 shiftwidth=2
         au! BufRead,BufNewFile DEPS     set filetype=python expandtab tabstop=2 shiftwidth=2
+        au! BufRead,BufNewFile *.cc,*.c,*.h set filetype=c tw=80 colorcolumn=81
         au! BufRead,BufNewFile *.jj*,.cl_description* set filetype=gitcommit tw=72 colorcolumn=73 spell
         au! BufNewFile,BufRead *.star set filetype=python
         au! BufNewFile,BufRead *.gn set filetype=python
