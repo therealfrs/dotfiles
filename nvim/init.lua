@@ -43,3 +43,4 @@ end
 
 require('config.lazy')
 require('utils.ninja_build').setup({})
+require('utils.file_type').setup({})
