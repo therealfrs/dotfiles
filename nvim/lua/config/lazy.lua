@@ -77,21 +77,22 @@ require("lazy").setup({
           vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
         end
 
-        local lspconfig = require('lspconfig')
-
-        lspconfig.pylsp.setup({
-          on_attach = on_attach,
-        })
-        lspconfig.gopls.setup({
-          on_attach = on_attach,
-        })
-        lspconfig.taplo.setup({
+        -- local lspconfig = require('lspconfig')
+        -- Define the configuration for the clangd server
+        vim.lsp.config.clangd = {
+            cmd = { 'clangd', '--background-index' },
+            root_markers = { 'compile_commands.json', 'compile_flags.txt' },
+            filetypes = { 'c', 'cpp' },
+            on_attach = on_attach
+        }
+        vim.lsp.config.pylsp = {
+          on_attach = on_attach
+        }
+        vim.lsp.config.taplo = {
           default_config = {
             cmd = { 'taplo', 'lsp', 'stdio' },
             filetypes = { 'toml' },
-            root_dir = function(fname)
-              return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
-            end,
+            root_markers = {'.git'},
             single_file_support = true,
           },
           docs = {
@@ -106,32 +107,14 @@ require("lazy").setup({
             ```
             ]],
           },
-        })
-        lspconfig.clangd.setup({
-          on_attach = function(client, bufnr)
-            on_attach(client, bufnr)
-          end,
-          cmd = {'/usr/bin/clangd', '--header-insertion=never'},
-          filetypes = {'c', 'cpp', 'java', 'go', 'bzl'},
-          -- Define what files indicate the root of the project
-          root_dir = lspconfig.util.root_pattern('compile_commands.json', 'compile_flags.txt', '.git'),
-          handlers = {
-            ['textDocument/clangd.fileStatus'] = function(err, result, ctx, cfg)
-              local buf = vim.fn.bufnr(vim.uri_to_fname(result.uri))
-              if buf < 0 then return end
-              local state = ''
-              if result.state == 'idle' then
-                state = '✓'
-              elseif string.find(result.state, 'parsing include', 0, true) then
-                state = '⟳'
-              elseif string.find(result.state, 'queued', 0, true) then
-                state = '…'
-              end
-              vim.b[buf].lsp_status = state
-            end
-          },
-          init_options = { clangdFileStatus = true },
-        })
+        }
+
+        -- Enable the clangd language server
+        vim.lsp.enable({ 'clangd' })
+        vim.lsp.enable({ 'pylsp' })
+        vim.lsp.enable({ 'taplo' })
+        vim.lsp.enable({ 'gopls' })
+
       end,
     },
 
