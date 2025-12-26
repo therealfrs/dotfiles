@@ -44,6 +44,9 @@ fi
 # pyright location
 export PATH=$PATH:$HOME/.local/bin
 
+# cargo binaries location
+export PATH=$PATH:$HOME/.cargo/bin
+
 # skip gce for cloudtop
 export SKIP_GCE_AUTH_FOR_GIT=1
 
