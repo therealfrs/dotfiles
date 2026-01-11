@@ -26,5 +26,6 @@ fi
 
 if [ "$1" = "jj" ]; then
   echo "Copying jj/config.toml file to $HOME/.config/jj/"
-  cp jj/config.toml $HOME/.config/jj
+  mkdir -p $HOME/.config/jj
+  cp jj/config.toml $HOME/.config/jj/config.toml
 fi
