@@ -25,7 +25,12 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
     -- import your plugins
-    {
+  {
+    'nvim-treesitter/nvim-treesitter',
+    lazy = false,
+    build = ':TSUpdate'
+  },
+  {
       'nvim-lualine/lualine.nvim',
       dependencies = { 'nvim-tree/nvim-web-devicons' },
       config = function()
@@ -170,7 +175,12 @@ require("lazy").setup({
 
     {'lewis6991/gitsigns.nvim'},
 
-    {'MeanderingProgrammer/render-markdown.nvim'},
+    {
+      'MeanderingProgrammer/render-markdown.nvim',
+      dependencies = { 
+        'nvim-mini/mini.icons', version = '*' 
+      },
+    },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
