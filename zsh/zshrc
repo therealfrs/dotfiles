@@ -7,6 +7,9 @@ plugins=(
 	fzf
 )
 
+# autocomplete on tab after equalsign with no whitespace.
+setopt magic_equal_subst
+
 # path to fzf
 export FZF_BASE=~/.fzf
 export FZF_DEFAULT_OPTS=""
