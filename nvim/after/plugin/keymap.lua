@@ -121,6 +121,20 @@ local keymap_Q = {
 }
 wk.add(keymap_Q)
 
+local keymap_git = {
+  { "<leader>g", group = "git" },
+  { "<leader>gd", "<cmd>Gitsigns diffthis<CR>", desc = "diff split (current file)" },
+  { "<leader>gv", "<cmd>DiffviewOpen -- %<CR>", desc = "diffview (current file)" },
+  { "<leader>gV", "<cmd>DiffviewOpen<CR>", desc = "diffview (all files)" },
+  { "<leader>gh", function()
+      require('gitsigns').toggle_linehl()
+      require('gitsigns').toggle_word_diff()
+    end,
+    desc = "toggle inline highlights"
+  },
+}
+wk.add(keymap_git)
+
 vim.api.nvim_set_keymap('n', '<C-p>', ":FZF<CR>", {noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', ',g', "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>", {noremap = true, silent = true })
 

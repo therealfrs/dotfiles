@@ -173,7 +173,22 @@ require("lazy").setup({
       run = './install --bin', 
     },
 
-    {'lewis6991/gitsigns.nvim'},
+    {
+      'lewis6991/gitsigns.nvim',
+      opts = {
+        signcolumn = true,
+        numhl      = false,
+        linehl     = false,
+        word_diff  = false,
+      }
+    },
+
+    {
+      'sindrets/diffview.nvim',
+      dependencies = 'nvim-lua/plenary.nvim',
+      cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles" },
+      opts = {},
+    },
 
     {
       'MeanderingProgrammer/render-markdown.nvim',
