@@ -40,6 +40,12 @@ local keymap_comma = {
     end,
     desc = 'changed files',
   },
+  { ",u",
+    function()
+      require('utils.git').search_hunks()
+    end,
+    desc = 'hunks',
+  },
   { ",f",
     function()
       require('telescope.builtin').find_files {
@@ -124,6 +130,11 @@ wk.add(keymap_Q)
 local keymap_git = {
   { "<leader>g", group = "git" },
   { "<leader>gd", "<cmd>Gitsigns diffthis<CR>", desc = "diff split (current file)" },
+  { "<leader>gs", function()
+      require('utils.git').search_hunks()
+    end,
+    desc = "search hunks (telescope)"
+  },
   { "<leader>gv", "<cmd>DiffviewOpen -- %<CR>", desc = "diffview (current file)" },
   { "<leader>gV", "<cmd>DiffviewOpen<CR>", desc = "diffview (all files)" },
   { "<leader>gh", function()
