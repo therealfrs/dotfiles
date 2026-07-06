@@ -130,6 +130,22 @@ wk.add(keymap_Q)
 local keymap_git = {
   { "<leader>g", group = "git" },
   { "<leader>gd", "<cmd>Gitsigns diffthis<CR>", desc = "diff split (current file)" },
+  { "<leader>gh", function()
+      require('gitsigns').toggle_linehl()
+      require('gitsigns').toggle_word_diff()
+    end,
+    desc = "toggle inline highlights"
+  },
+  { "<leader>gn", function()
+      require('gitsigns').nav_hunk('next')
+    end,
+    desc = "next hunk"
+  },
+  { "<leader>gp", function()
+      require('gitsigns').nav_hunk('prev')
+    end,
+    desc = "prev hunk"
+  },
   { "<leader>gs", function()
       require('utils.git').search_hunks()
     end,
@@ -137,12 +153,6 @@ local keymap_git = {
   },
   { "<leader>gv", "<cmd>DiffviewOpen -- %<CR>", desc = "diffview (current file)" },
   { "<leader>gV", "<cmd>DiffviewOpen<CR>", desc = "diffview (all files)" },
-  { "<leader>gh", function()
-      require('gitsigns').toggle_linehl()
-      require('gitsigns').toggle_word_diff()
-    end,
-    desc = "toggle inline highlights"
-  },
 }
 wk.add(keymap_git)
 
