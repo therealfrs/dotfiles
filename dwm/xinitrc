@@ -35,5 +35,7 @@ xset r rate 300 30
 
 # Comment out the following if this is .xsessionrc file,
 # as opposed to .xsession. See https://wiki.debian.org/Xsession for details.
-exec dwm 
-
+while true; do
+    # Log errors to a file (optional but helpful)
+    dwm 2> ~/.dwm.log
+done
