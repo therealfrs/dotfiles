@@ -83,9 +83,24 @@ require("lazy").setup({
         end
 
         -- local lspconfig = require('lspconfig')
+        local get_clangd_cmd = function()
+          local default_cmd = { 'clangd', '--background-index', '--header-insertion=never' }
+          local chromium_clangd_paths = {
+            vim.fn.getcwd() .. '/third_party/llvm-build/Release+Asserts/bin/clangd',
+            vim.fn.getcwd() .. '/../third_party/llvm-build/Release+Asserts/bin/clangd',
+            '/usr/local/google/home/frs/git/alcatraz/src/third_party/llvm-build/Release+Asserts/bin/clangd',
+          }
+          for _, path in ipairs(chromium_clangd_paths) do
+            if vim.fn.executable(path) == 1 then
+              return { path, '--background-index', '--header-insertion=never' }
+            end
+          end
+          return default_cmd
+        end
+
         -- Define the configuration for the clangd server
         vim.lsp.config.clangd = {
-            cmd = { 'clangd', '--background-index' },
+            cmd = get_clangd_cmd(),
             root_markers = { 'compile_commands.json', 'compile_flags.txt' },
             filetypes = { 'c', 'cpp' },
             on_attach = on_attach

@@ -107,11 +107,37 @@ local keymap_comma = {
 }
 wk.add(keymap_comma)
 
+local function switch_source_header()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local client = vim.lsp.get_clients({ bufnr = bufnr, name = "clangd" })[1]
+  if not client then
+    vim.notify("clangd not attached to current buffer", vim.log.levels.WARN)
+    return
+  end
+  local params = { uri = vim.uri_from_bufnr(bufnr) }
+  client.request("textDocument/switchSourceHeader", params, function(err, result)
+    if err then
+      vim.notify("Error switching header/source: " .. tostring(err), vim.log.levels.ERROR)
+      return
+    end
+    if not result or result == "" then
+      vim.notify("Corresponding header/source not found", vim.log.levels.INFO)
+      return
+    end
+    vim.cmd.edit(vim.uri_to_fname(result))
+  end, bufnr)
+end
+
+vim.api.nvim_create_user_command("ClangdSwitchSourceHeader", switch_source_header, {
+  desc = "Switch between C/C++ header and source file using clangd",
+})
+
 local keymap_g = {
   { "g", group = "go" },
   { "gD", "<Cmd>lua vim.lsp.buf.definition()<CR>", desc = "LSP definition" },
   { "gd", "<Cmd>Telescope lsp_definitions <CR>", desc = "LSP definitions" },
   { "ge", "<Cmd>lua vim.diagnostic.open_float()<CR>", desc = "Diagnostic error" },
+  { "gh", switch_source_header, desc = "switch header/source" },
   { "gi", "<Cmd>Telescope lsp_implementation<CR>", desc = "LSP implementation" },
   { "gr", "<Cmd>Telescope lsp_references<CR>", desc = "LSP references" },
   { "gs", '<Cmd>call swap#prerequisite("n")<CR>g@l', desc = "swap interactive" },
