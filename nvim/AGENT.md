@@ -63,7 +63,7 @@ Plugins are managed via **[lazy.nvim](file:///usr/local/google/home/frs/git/dotf
 *   **Syntax Highlighting**: `nvim-treesitter` for advanced language parsing.
 *   **Completion**: `blink.cmp` (modern, fast completion engine).
 *   **LSP**: `nvim-lspconfig` configured for `clangd` (C++), `pylsp` (Python), `taplo` (TOML), `gopls` (Go), and `tsserver` (TypeScript).
-*   **UI**: `lualine.nvim` (statusline, using the `alabaster` theme), `which-key.nvim` (keymap visualizer), and `render-markdown.nvim`.
+*   **UI**: `lualine.nvim` (statusline, using the `alabaster` theme) and `which-key.nvim` (keymap visualizer).
 
 ---
 

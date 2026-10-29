@@ -204,13 +204,6 @@ require("lazy").setup({
       cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles" },
       opts = {},
     },
-
-    {
-      'MeanderingProgrammer/render-markdown.nvim',
-      dependencies = { 
-        'nvim-mini/mini.icons', version = '*' 
-      },
-    },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
