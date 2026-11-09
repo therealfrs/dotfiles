@@ -199,10 +199,40 @@ require("lazy").setup({
     },
 
     {
-      'sindrets/diffview.nvim',
-      dependencies = 'nvim-lua/plenary.nvim',
-      cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles" },
-      opts = {},
+      'esmuellert/codediff.nvim',
+      cmd = 'CodeDiff',
+      opts = {
+        explorer = {
+          view_mode = 'tree',
+          flatten_dirs = true,
+          file_filter = {
+            ignore = { '.git/**', '.jj/**' },
+          },
+        },
+      },
+    },
+
+    {
+      'NicolasGB/jj.nvim',
+      version = '*',
+      dependencies = { 'esmuellert/codediff.nvim' },
+      cmd = {
+        'J',
+        'Jdiff',
+        'Jvdiff',
+        'Jhdiff',
+        'Jedit',
+        'Jtabedit',
+        'Jsplit',
+        'Jvsplit',
+        'Jread',
+        'Jbrowse',
+      },
+      opts = {
+        diff = {
+          backend = 'codediff',
+        },
+      },
     },
   },
   -- Configure any other settings here. See the documentation for more details.

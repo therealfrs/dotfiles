@@ -17,12 +17,16 @@ nvim/
 │   ├── config/
 │   │   └── lazy.lua      # Plugin management & configuration (lazy.nvim)
 │   ├── utils/
+│   │   ├── codediff.lua  # VCS-aware CodeDiff reviewer integration (jj + git)
 │   │   ├── file_type.lua # Filetype-specific autocommands
+│   │   ├── git.lua       # Telescope Git hunks picker
 │   │   └── ninja_build.lua# Custom Ninja build integration
 │   └── windows.lua       # Custom window management helpers
 └── tests/                # Test suite
     ├── minimal_init.lua  # Bootstraps isolated headless Neovim for testing
     └── utils/
+        ├── codediff_spec.lua    # Tests for codediff.lua
+        ├── git_spec.lua         # Tests for git.lua
         └── ninja_build_spec.lua # Tests for ninja_build.lua
 ```
 
@@ -48,7 +52,19 @@ Automates buffer-local settings based on the file type.
 *   **Markdown**: Enables spell checking (`spell = true`).
 *   **Git Commit**: Sets text width to 72 characters, highlights the color column at 72, and enables spell checking.
 
-### 3. Window Management (`lua/windows.lua`)
+### 3. CodeDiff Review Integration (`lua/utils/codediff.lua`)
+Resolves diffs across colocated `jj`+`git`, pure `jj` (such as `jj-on-piper`), and plain `git` repositories and launches `codediff.nvim`.
+*   **Commands**:
+    *   `:ReviewDiff` (`<leader>gV`): Reviews the active change (`@` or `@-` in `jj`, working tree or `HEAD~1..HEAD` in `git`).
+    *   `:ReviewFile` (`<leader>gv`): Reviews the current file against the active change base.
+    *   `:ReviewStack` (`<leader>gt`): Reviews the cumulative stack against `trunk()` or the Git default branch.
+
+### 4. Git Hunks Picker (`lua/utils/git.lua`)
+Provides a Telescope picker for Git hunks across the repository without mutating global quickfix state.
+*   **Commands**:
+    *   `:GitHunks` (`,u` / `<leader>gs`): Lists changed hunks sorted with the current file first.
+
+### 5. Window Management (`lua/windows.lua`)
 Provides smart window splitting and closing helpers.
 *   `split_nicely()`: Automatically decides whether to split vertically or horizontally based on the current window width (prefers vertical if space permits).
 *   `smart_close()`: Closes the current window, but prevents closing if it is the last remaining window.
@@ -59,6 +75,7 @@ Provides smart window splitting and closing helpers.
 
 Plugins are managed via **[lazy.nvim](file:///usr/local/google/home/frs/git/dotfiles/nvim/lua/config/lazy.lua)**. Key plugins include:
 
+*   **Code Review & VCS**: `codediff.nvim` (VS Code-style diffs & merge tool), `jj.nvim` (Jujutsu client configured with the `codediff` backend), and `gitsigns.nvim`.
 *   **Fuzzy Finding**: `telescope.nvim` and `fzf` for fast file and text searching.
 *   **Syntax Highlighting**: `nvim-treesitter` for advanced language parsing.
 *   **Completion**: `blink.cmp` (modern, fast completion engine).

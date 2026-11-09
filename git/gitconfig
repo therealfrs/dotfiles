@@ -8,6 +8,7 @@
   rb = rebase 
   lg = log --oneline 
   st = status
+  dv = difftool -d
 [user]
 	name = Feras Aldahlawi
 	email = feras@chromium.org
@@ -19,13 +20,19 @@
 [advice]
 	skippedCherryPicks = false
 [merge]
-	tool = meld
+	tool = codediff
+[mergetool]
+	prompt = false
+	keepBackup = false
+[mergetool "codediff"]
+	cmd = "CD_MERGED=\"$MERGED\" nvim \"$MERGED\" -c \"lua vim.cmd('CodeDiff --exit-on-close merge ' .. vim.fn.fnameescape(vim.env.CD_MERGED))\""
+	trustExitCode = true
 [diff]
-  tool = meld
+	tool = codediff
 [difftool]
-  prompt = false
- [difftool "meld"]
-     cmd = meld "$LOCAL" "$REMOTE"
+	prompt = false
+[difftool "codediff"]
+	cmd = "if [ -d \"$LOCAL\" ]; then CD_LOCAL=\"$LOCAL\" CD_REMOTE=\"$REMOTE\" nvim -c \"lua vim.cmd('CodeDiff --exit-on-close dir ' .. vim.fn.fnameescape(vim.env.CD_LOCAL) .. ' ' .. vim.fn.fnameescape(vim.env.CD_REMOTE))\"; else CD_LOCAL=\"$LOCAL\" CD_REMOTE=\"$REMOTE\" nvim \"$LOCAL\" \"$REMOTE\" -c \"lua vim.cmd('CodeDiff --exit-on-close file ' .. vim.fn.fnameescape(vim.env.CD_LOCAL) .. ' ' .. vim.fn.fnameescape(vim.env.CD_REMOTE))\"; fi"
 [core]
   editor = nvim
 	filemode = false

@@ -177,8 +177,24 @@ local keymap_git = {
     end,
     desc = "search hunks (telescope)"
   },
-  { "<leader>gv", "<cmd>DiffviewOpen -- %<CR>", desc = "diffview (current file)" },
-  { "<leader>gV", "<cmd>DiffviewOpen<CR>", desc = "diffview (all files)" },
+  { "<leader>gv", function()
+      require('utils.codediff').review_file()
+    end,
+    desc = "codediff (current file)"
+  },
+  { "<leader>gV", function()
+      require('utils.codediff').review_change()
+    end,
+    desc = "codediff review (current change)"
+  },
+  { "<leader>gt", function()
+      require('utils.codediff').review_stack()
+    end,
+    desc = "codediff review (stack vs trunk)"
+  },
+  { "<leader>gH", "<cmd>CodeDiff history<CR>", desc = "codediff history (repo)" },
+  { "<leader>gf", "<cmd>CodeDiff history %<CR>", desc = "codediff history (current file)" },
+  { "<leader>gj", "<cmd>J log<CR>", desc = "jj log" },
 }
 wk.add(keymap_git)
 

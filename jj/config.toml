@@ -42,3 +42,25 @@ patterns = [
 [fix.tools.lucicfg-format]
 command = ["lucicfg", "fmt", "-stdio", "$path"]
 patterns = ["glob:'**/*.star'"]
+
+[aliases]
+dv = ["diff", "--tool", "codediff"]
+
+[merge-tools.codediff]
+program = "sh"
+diff-invocation-mode = "dir"
+edit-invocation-mode = "dir"
+diff-args = [
+    "-c",
+    "JJ_LEFT=\"$1\" JJ_RIGHT=\"$2\" exec nvim -c \"lua vim.cmd('CodeDiff --exit-on-close dir ' .. vim.fn.fnameescape(vim.env.JJ_LEFT) .. ' ' .. vim.fn.fnameescape(vim.env.JJ_RIGHT))\" </dev/tty >/dev/tty",
+    "jj-codediff",
+    "$left",
+    "$right",
+]
+edit-args = [
+    "-c",
+    "rm -f \"$2/JJ-INSTRUCTIONS\"; JJ_LEFT=\"$1\" JJ_RIGHT=\"$2\" exec nvim -c \"lua vim.cmd('CodeDiff --exit-on-close dir ' .. vim.fn.fnameescape(vim.env.JJ_LEFT) .. ' ' .. vim.fn.fnameescape(vim.env.JJ_RIGHT))\" </dev/tty >/dev/tty",
+    "jj-codediff-edit",
+    "$left",
+    "$right",
+]
