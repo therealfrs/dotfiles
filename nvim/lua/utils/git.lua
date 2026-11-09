@@ -116,6 +116,64 @@ function M.search_hunks(opts)
   end)
 end
 
+--- Runs a command synchronously and returns exit code and output.
+---@param cmd string[]
+---@return { code: number, stdout: string, stderr: string }
+local function default_runner(cmd)
+  local res = vim.system(cmd, { text = true }):wait()
+  return {
+    code = res.code or 1,
+    stdout = res.stdout or '',
+    stderr = res.stderr or '',
+  }
+end
+
+--- Migrates any lazy.nvim plugin clones using Git `reftable` ref storage to
+--- `files` ref storage so lazy.nvim can read `.git/HEAD` and `.git/packed-refs`.
+---@param lazy_root string
+---@param runner? fun(cmd: string[]): { code: number, stdout: string, stderr: string }
+---@return string[]
+function M.ensure_files_ref_storage(lazy_root, runner)
+  local uv = vim.uv or vim.loop
+  if not lazy_root or lazy_root == '' or not uv.fs_stat(lazy_root) then
+    return {}
+  end
+
+  local handle = uv.fs_scandir(lazy_root)
+  if not handle then
+    return {}
+  end
+
+  local run = runner or default_runner
+  local migrated = {}
+
+  while true do
+    local name, entry_type = uv.fs_scandir_next(handle)
+    if not name then
+      break
+    end
+
+    if name ~= '.' and name ~= '..' and (entry_type == 'directory' or entry_type == nil) then
+      local plugin_dir = lazy_root .. '/' .. name
+      if uv.fs_stat(plugin_dir .. '/.git/reftable') then
+        run({ 'git', '-C', plugin_dir, 'config', '--unset-all', 'remote.origin.fetch', '\\.invalid' })
+        local res = run({ 'git', '-C', plugin_dir, 'refs', 'migrate', '--ref-format=files' })
+        if res.code == 0 then
+          table.insert(migrated, name)
+        else
+          vim.notify(
+            'Failed to migrate git refs for ' .. name .. ': ' .. vim.trim(res.stderr or ''),
+            vim.log.levels.WARN
+          )
+        end
+      end
+    end
+  end
+
+  table.sort(migrated)
+  return migrated
+end
+
 function M.setup()
   vim.api.nvim_create_user_command("GitHunks", function()
     M.search_hunks()

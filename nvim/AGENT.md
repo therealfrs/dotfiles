@@ -97,7 +97,7 @@ make test
 
 This executes:
 ```bash
-nvim --clean --headless -u tests/minimal_init.lua -c "PlenaryBustedDirectory tests/utils"
+nvim --clean --headless -u tests/minimal_init.lua -c "PlenaryBustedDirectory tests/utils {minimal_init = 'tests/minimal_init.lua'}"
 ```
 *   `--clean`: Isolates tests from your active Neovim session and configuration errors.
 *   `-u tests/minimal_init.lua`: Bootstraps the testing environment (loads Plenary and registers local paths).

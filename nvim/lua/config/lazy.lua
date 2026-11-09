@@ -1,3 +1,10 @@
+-- lazy.nvim reads .git/HEAD, .git/refs/*, and .git/packed-refs directly off
+-- disk, which fails on Git 2.56+ `reftable` clones (where .git/HEAD contains
+-- `ref: refs/heads/.invalid`). Force `files` ref storage for plugin clones and
+-- auto-migrate any existing reftable plugin repos in lazy's data directory.
+vim.env.GIT_DEFAULT_REF_STORAGE_FORMAT = "files"
+require("utils.git").ensure_files_ref_storage(vim.fn.stdpath("data") .. "/lazy")
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
